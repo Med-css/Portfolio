@@ -74,6 +74,8 @@
         </button>
     </section>
     <main></main>
+    <main></main>
+    <main></main>
 
     <!-- Inclure la bibliothèque particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -194,6 +196,26 @@
             }, 2600);
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const logo = document.querySelector('.logo');
+            const initialSize = 450; 
+            const scaleFactor = 39; 
+            const moveFactor = 39; 
     
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY;
+                // Calculez la nouvelle taille en fonction de la position de défilement
+                const newSize = initialSize + scrollPosition * scaleFactor;
+                // Calculez le déplacement vers la droite
+                const moveRight = scrollPosition * moveFactor;
+    
+                // Appliquez la nouvelle taille et le déplacement à l'image
+                logo.style.width = `${newSize}px`;
+                logo.style.height = 'auto'; // Conservez les proportions de l'image
+                logo.style.paddingLeft = `${moveRight}px`;
+            });
+        });
+    </script>
 </body>
 </html>
