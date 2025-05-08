@@ -11,6 +11,7 @@
 
 </head>
 <body>
+    <canvas id="canvas"></canvas>
     <section class="background-website">
         <div id="particlesjs"></div>
         <img src="./img/logo.png" alt="logo" class="logo">
@@ -73,7 +74,12 @@
             Skills
         </button>
     </section>
-    <main></main>
+    <main>
+        <h1>About me</h1>
+        <p class="text-to-write">
+        </p>
+          
+    </main>
     <main></main>
     <main></main>
 
@@ -183,39 +189,206 @@
                 },
                 "retina_detect": true
             };
-    
+
             // Initialisation de particlesJS
             var pJS = particlesJS('particlesjs', particlesConfig);
-    
+
             // Réduction du nombre de particules après 2600 ms
             setTimeout(function() {
-                const logo = document.querySelector('.logo');
-                logo.style.zIndex = 4;
-                pJS.particles.number.value = 10;
-                pJS.fn.vendors.densityAutoParticles();
+                const logo = document.querySelector('#particlesjs');
+                logo.style.display = 'none';
             }, 2600);
         });
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            let i = 0;
             const logo = document.querySelector('.logo');
-            const initialSize = 450; 
-            const scaleFactor = 39; 
-            const moveFactor = 39; 
-    
+            const background = document.querySelector('.background-website');
+            const initialSize = 450;
+            const scaleFactor = 39;
+            const moveFactor = 39;
+        
             window.addEventListener('scroll', function() {
                 const scrollPosition = window.scrollY;
-                // Calculez la nouvelle taille en fonction de la position de défilement
+                const viewportHeight = window.innerHeight;
+        
+                // Set z-index based on scroll position
+                if (scrollPosition === 0) {
+                    background.style.zIndex = -1;
+                } else {
+                    background.style.zIndex = 4;
+                }
+        
+                // Show or hide the background based on scroll position
+                if (scrollPosition < viewportHeight) {
+                    background.style.opacity = '1';
+                    background.style.zIndex = '4';
+
+                } else {
+                    background.style.opacity = '0';
+                    background.style.zIndex = '-100';
+                    if(i === 0){
+                            var typed = new Typed('.text-to-write', {
+                                strings: ['', "I'm <span class='othercolor'>ERRAES Mehdi</span>, a student who's really into <span class='othercolor'>web development</span>. I'm <span class='othercolor'>curious</span>, <span class='othercolor'>independent</span>, and always looking to <span class='othercolor'>learn something new</span>. I spend most of my time diving into web technologies, both <span class='othercolor'>front-end</span> and <span class='othercolor'>back-end</span>. I love building websites that <span class='othercolor'>look great</span>, <span class='othercolor'>work smoothly</span>, and are <span class='othercolor'>fun to use</span>, and I also enjoy <span class='othercolor'>sharing what I learn</span> with others."],
+                                typeSpeed: 30,
+                                loop: false,
+                                showCursor: false // Ajoutez cette ligne pour masquer le curseur
+
+                            });
+                            i++;
+                    }
+
+                }
+        
+                // Calculate the new size based on the scroll position
                 const newSize = initialSize + scrollPosition * scaleFactor;
-                // Calculez le déplacement vers la droite
+                // Calculate the displacement to the right
                 const moveRight = scrollPosition * moveFactor;
-    
-                // Appliquez la nouvelle taille et le déplacement à l'image
+        
+                // Apply the new size and displacement to the image
                 logo.style.width = `${newSize}px`;
-                logo.style.height = 'auto'; // Conservez les proportions de l'image
+                logo.style.height = 'auto'; // Maintain the image proportions
                 logo.style.paddingLeft = `${moveRight}px`;
             });
         });
+        
+        
+        const FPS = 60;
+        const PI_2 = 2 * Math.PI;
+
+        const canvas = document.getElementById("canvas");
+        const context = canvas.getContext("2d");
+
+        let mouseX = canvas.width / 2;
+        let mouseY = canvas.height / 2;
+        let lastMouseDirectionX = 0;
+        let lastMouseDirectionY = 0;
+
+        const windowResizeHandler = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+
+        window.addEventListener('resize', windowResizeHandler, false);
+        window.addEventListener('mousemove', (event) => {
+            lastMouseDirectionX = event.clientX - mouseX;
+            lastMouseDirectionY = event.clientY - mouseY;
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+        });
+
+        windowResizeHandler();
+
+        const range = (a, b) => (b - a) * Math.random() + a;
+
+        const drawCircle = (x, y, r, style) => {
+            context.beginPath();
+            context.arc(x, y, r, 0, PI_2, false);
+            context.fillStyle = style;
+            context.fill();
+        };
+
+        class Particle {
+            constructor(x, y, vx, vy) {
+                this.x = x;
+                this.y = y;
+                this.vx = vx + range(-0.5, 0.5); // Ajout de randomisation
+                this.vy = vy + range(-0.5, 0.5); // Ajout de randomisation
+                this.opacity = 1;
+                this.r = range(1, 4);
+                this.color = `rgba(${range(100, 255)}, ${range(100, 200)}, ${range(200, 255)}, ${this.opacity})`;
+            }
+
+            step() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.opacity -= 0.01;
+                if (this.opacity <= 0) {
+                    this.destroyed = true;
+                }
+            }
+
+            draw() {
+                if (this.opacity <= 0) return;
+                drawCircle(this.x, this.y, this.r, this.color);
+            }
+        }
+
+        class Flame {
+            constructor() {
+                this.x = mouseX;
+                this.y = mouseY;
+                this.r = 12;
+            }
+
+            step() {
+                return false;
+            }
+
+            draw() {
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                const minDistance = 50;
+                if (distance > minDistance) {
+                    this.x += (dx / distance) * minDistance * 0.05;
+                    this.y += (dy / distance) * minDistance * 0.05;
+                }
+
+                for (let i = 0; i < 2; i++) { // Réduit le nombre de particules créées
+                    const vx = -lastMouseDirectionX * 0.1;
+                    const vy = -lastMouseDirectionY * 0.1;
+                    w.addEntity(Particle, this.x, this.y, vx, vy);
+                }
+
+                const g = context.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r * 2);
+                g.addColorStop(0, `rgba(100, 100, 255, ${range(0.7, 0.9)})`);
+                g.addColorStop(1, "rgba(100, 100, 255, 0)");
+                drawCircle(this.x, this.y, this.r * 2, g);
+
+                drawCircle(this.x + range(-2, 2), this.y + range(-2, 2), this.r, `rgba(100, 100, 255, ${range(0.5, 0.8)})`);
+            }
+        }
+
+        class World {
+            constructor() {
+                this.entities = {};
+                this.i = 0;
+                this.frame = 0;
+                setInterval(() => {
+                    this.loop();
+                }, 1000 / FPS);
+            }
+
+            addEntity(klass, ...args) {
+                this.entities[this.i] = new klass(...args);
+                this.i -= 1;
+            }
+
+            loop() {
+                this.frame++;
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                for (const k in this.entities) {
+                    const entity = this.entities[k];
+                    if (entity.destroyed === true) {
+                        delete this.entities[k];
+                        continue;
+                    }
+                    entity.step();
+                    entity.draw();
+                }
+            }
+        }
+
+        const w = new World();
+        w.addEntity(Flame);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+
+
     </script>
 </body>
 </html>
