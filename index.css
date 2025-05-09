@@ -10,10 +10,12 @@ h1, h2, h3, h4, h5, h6{
     font-style: normal;
     color: #5A219F;
 }
-span.othercolor{
-    color: #333333;
+span.othercolor {
+    color: #00CED1;
     font-size: 17px;
+    text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.1);
 }
+
 p{
     font-family: sans-serif;
     font-weight: 400;
@@ -160,6 +162,7 @@ header h1{
     animation: fadeInFixButton 0.5s ease-in-out forwards;
     animation-delay: 1.6s;
     z-index: 5;
+    transition: all 0.3s ease-in-out;
 
 
 }
@@ -243,24 +246,57 @@ header h1{
 
 
 main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 2em;
-    height: 150vh;
+    display: grid;
+    grid-template-columns: 0.9fr 1fr;
     width: 100%;
     z-index: 2;
+    opacity: 0;
+    background-color: #8B8E64;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    padding-top: 75vh;
+    padding-bottom: 40vh;
+    padding-left: 4em;
+    box-sizing: border-box;
 }
-main p{
-    max-width: 40%;
+.about-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 500px;
 
 }
+
+main p{
+    color: #F5F5DC;
+    max-width: 90% !important;
+}
+
 main h1{
     margin: 0;
+    color: white;
+}
+.text-to-write{
+    height: 100px;
+    width: 300px;
+    border-bottom: 1px solid white;
+}
+.position-animation{
+    display: none;
+    transform: translateX(-150%);
+    animation: animationPosition 1s ease-in-out forwards;
+    animation-delay: 2s;
+}
+@keyframes animationPosition{
+    0%{
+        transform: translateX(-150%);
+    }
+    100%{
+        transform: translateX(0);
+    }
 }
 
-canvas {
+#canvas {
     display: block;
     filter: blur(2px);
     position: fixed;
@@ -269,9 +305,34 @@ canvas {
     pointer-events: none;
     z-index: 1;
     opacity: 0.5;
+
+}
+
+.canva-container{
+    width: 500px;
+    height: 500px;
+
 }
 
 
 
 
-
+.section2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    z-index: 100;
+    opacity: 1;
+    position: relative;
+    background-color: #8B8E64;
+    transition: all 0.5s ease-in-out;
+    padding-left: 4em;
+    padding-top: 30vh;
+    padding-bottom: 40vh;
+    box-sizing: border-box;
+}
+.section2.active {
+    transform: translateY(-110vh);
+}

@@ -11,6 +11,7 @@
 
 </head>
 <body>
+
     <canvas id="canvas"></canvas>
     <section class="background-website">
         <div id="particlesjs"></div>
@@ -74,14 +75,52 @@
             Skills
         </button>
     </section>
-    <main class="about">
-        <h1>About me</h1>
-        <p class="text-to-write">
+    <main class="about" id="section1">
+        <div class="about-content">
+        <h1 class="text-to-write"></h1>
+        <p class="position-animation">
+            I'm <span class='othercolor'>ERRAES Mehdi</span>, a student who's really into <span class='othercolor'>web development</span>. I'm <span class='othercolor'>curious</span>, <span class='othercolor'>independent</span>, and always looking to <span class='othercolor'>learn something new</span>. I spend most of my time diving into web technologies, both <span class='othercolor'>front-end</span> and <span class='othercolor'>back-end</span>. I love building websites that <span class='othercolor'>look great</span>, <span class='othercolor'>work smoothly</span>, and are <span class='othercolor'>fun to use</span>, and I also enjoy <span class='othercolor'>sharing what I learn</span> with others.
         </p>
-          
+        </div>
+        <div class="canva-container">
+            <canvas id="canvaAnimation"></canvas>
+        </div>
+
+
+
     </main>
-    <main></main>
-    <main></main>
+    <section class="section2" id="section2">
+        <h1>project</h1>
+        
+
+
+
+    </section>
+
+
+ 
+<script>
+window.addEventListener('scroll', function() {
+    const section1 = document.getElementById('section1');
+    const section2 = document.getElementById('section2');
+
+    // Calculate the end position of section1
+    const section1End = section1.offsetTop + section1.offsetHeight;
+
+    // Define an offset (e.g., 200 pixels before the end of section1)
+    const offset = 600;
+
+    // Check if the scroll position is within the offset range from the end of section1
+    if (window.scrollY >= section1End - offset) {
+        section2.classList.add('active');
+    } else {
+        section2.classList.remove('active');
+    }
+});
+
+
+</script>
+
 
     <!-- Inclure la bibliothèque particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -196,16 +235,23 @@
             // Réduction du nombre de particules après 2600 ms
             setTimeout(function() {
                 const logo = document.querySelector('#particlesjs');
-
+               
+ 
                 logo.style.display = 'none';
+
             }, 2600);
         });
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let i = 0;
+            const about = document.querySelector('.about');
             const logo = document.querySelector('.logo');
             const background = document.querySelector('.background-website');
+            const positionanimation = document.querySelector('.position-animation');
+            const headerbutton = document.querySelector('.header-fix-button');
+
+           
             const initialSize = 450;
             const scaleFactor = 39;
             const moveFactor = 39;
@@ -225,22 +271,29 @@
                 if (scrollPosition < viewportHeight) {
                     background.style.opacity = '1';
                     background.style.zIndex = '4';
+                    about.style.opacity = '0';
+                    headerbutton.style.backgroundColor = '#7831b68a';
+
 
                 } else {
                     background.style.opacity = '0';
                     background.style.zIndex = '-100';
                     if(i === 0){
                             var typed = new Typed('.text-to-write', {
-                                strings: ['', "I'm <span class='othercolor'>ERRAES Mehdi</span>, a student who's really into <span class='othercolor'>web development</span>. I'm <span class='othercolor'>curious</span>, <span class='othercolor'>independent</span>, and always looking to <span class='othercolor'>learn something new</span>. I spend most of my time diving into web technologies, both <span class='othercolor'>front-end</span> and <span class='othercolor'>back-end</span>. I love building websites that <span class='othercolor'>look great</span>, <span class='othercolor'>work smoothly</span>, and are <span class='othercolor'>fun to use</span>, and I also enjoy <span class='othercolor'>sharing what I learn</span> with others."],
-                                typeSpeed: 30,
+                                strings: ['', "About me"],
+                                typeSpeed: 100,
                                 loop: false,
                                 showCursor: false // Ajoutez cette ligne pour masquer le curseur
 
                             });
                             i++;
                     }
+                    about.style.opacity = '1';
+                    positionanimation.style.display = 'block';
+                    headerbutton.style.backgroundColor = '#A9AC80';
 
                 }
+
         
                 // Calculate the new size based on the scroll position
                 const newSize = initialSize + scrollPosition * scaleFactor;
@@ -387,9 +440,102 @@
         w.addEntity(Flame);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script>
+   
+
+<script>
+    window.onload = function() {
+        var container2 = document.querySelector('.canva-container');
+        var canvas2 = document.getElementById('canvaAnimation');
+
+        // Définir la taille du canvas pour qu'elle corresponde à celle du conteneur
+        canvas2.width = container2.clientWidth;
+        canvas2.height = container2.clientHeight;
+
+        var context2 = canvas2.getContext('2d');
+
+        // Remplir le canvas avec un fond noir
+        context2.fillStyle = 'transparent';
+        context2.fillRect(0, 0, canvas2.width, canvas2.height);
+
+        // Paramètres de la sphère
+        var radius = 200;
+        var points = [];
+        var numPoints = 300; // Nombre de points sur la sphère
+
+        // Générer des points aléatoires sur la surface de la sphère
+        for (var i = 0; i < numPoints; i++) {
+            var theta = Math.random() * 2 * Math.PI;
+            var phi = Math.acos(2 * Math.random() - 1);
+            var x = radius * Math.sin(phi) * Math.cos(theta);
+            var y = radius * Math.sin(phi) * Math.sin(theta);
+            var z = radius * Math.cos(phi);
+            points.push([x, y, z]);
+        }
+
+        // Fonction pour dessiner la sphère
+        function drawSphere() {
+            context2.clearRect(0, 0, canvas2.width, canvas2.height);
+            context2.fillStyle = 'transparent';
+            context2.fillRect(0, 0, canvas2.width, canvas2.height);
+
+            context2.fillStyle = 'white';
+
+            // Dessiner les points de la sphère
+            for (var i = 0; i < points.length; i++) {
+                var point = points[i];
+                var scale = 200;
+                var centerX = canvas2.width / 2;
+                var centerY = canvas2.height / 2;
+
+                var x2d = point[0] + centerX;
+                var y2d = point[1] + centerY;
+
+                context2.beginPath();
+                context2.arc(x2d, y2d, 2, 0, Math.PI * 2); // Dessiner un petit cercle pour chaque point
+                context2.fill();
+            }
+        }
+
+        // Fonction pour faire tourner la sphère
+        function rotateSphere() {
+            var angleX = 0.005;
+            var angleY = 0.01;
+            var angleZ = 0.0075;
 
 
-    </script>
+            for (var i = 0; i < points.length; i++) {
+                var point = points[i];
+                var x = point[0];
+                var y = point[1];
+                var z = point[2];
+
+                // Rotation autour de l'axe X
+                var newY = y * Math.cos(angleX) - z * Math.sin(angleX);
+                var newZ = y * Math.sin(angleX) + z * Math.cos(angleX);
+                y = newY;
+                z = newZ;
+
+                // Rotation autour de l'axe Y
+                var newX = x * Math.cos(angleY) - z * Math.sin(angleY);
+                newZ = x * Math.sin(angleY) + z * Math.cos(angleY);
+                x = newX;
+                z = newZ;
+
+                // Rotation autour de l'axe Z
+                newX = x * Math.cos(angleZ) - y * Math.sin(angleZ);
+                newY = x * Math.sin(angleZ) + y * Math.cos(angleZ);
+                x = newX;
+                y = newY;
+
+                points[i] = [x, y, z];
+            }
+            drawSphere();
+            requestAnimationFrame(rotateSphere);
+        }
+
+        // Démarrer l'animation
+        rotateSphere();
+    };
+</script>
 </body>
 </html>
