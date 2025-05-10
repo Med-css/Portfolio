@@ -15,7 +15,11 @@
     <canvas id="canvas"></canvas>
     <section class="background-website">
         <div id="particlesjs"></div>
-        <img src="./img/logo.png" alt="logo" class="logo">
+
+        <img src="./img/logo.svg" alt="logo" class="logo">
+        <img src="./img/med.png" alt="logo" class="logoMed">
+
+
     </section>
     <header id="header">
         <section class="header-fix-infos">
@@ -299,7 +303,45 @@
 
      
         
+    <div class="image-animation">
+    <img src="./img/med.png" alt="logo" class="logoMed2" id="med1">
+    <img src="./img/med1.png" alt="logo" class="logoMed2" id="med2">
+    <img src="./img/med2.png" alt="logo" class="logoMed2" id="med3">
+    <img src="./img/med3.png" alt="logo" class="logoMed2" id="med4">
+    </div>
+ <script>
+        const images = [
+            document.getElementById('med1'),
+            document.getElementById('med2'),
+            document.getElementById('med3'),
+            document.getElementById('med4')
+        ];
 
+        let currentIndex = 0;
+        const sequence = [0, 1, 2, 3, 2, 1, 0]; // Ordre d'affichage des images
+
+        function showNextImage() {
+            // Masquer toutes les images
+            images.forEach(img => {
+                img.style.display = 'none';
+            });
+
+            // Afficher l'image actuelle
+            images[sequence[currentIndex]].style.display = 'block';
+
+            // Passer à l'image suivante dans la séquence
+            currentIndex = (currentIndex + 1) % sequence.length;
+
+            // Si on revient à la première image, attendre 1500ms avant de continuer
+            if (currentIndex === 0) {
+                setTimeout(showNextImage, 2000);
+            } else {
+                setTimeout(showNextImage, 100);
+            }
+        }
+
+        showNextImage();
+    </script>
     </section>
 
 
@@ -434,11 +476,15 @@
             const section2 = document.querySelector('#section2');
 
             const logo = document.querySelector('.logo');
+            const logoMed = document.querySelector('.logoMed');
+
             const background = document.querySelector('.background-website');
             const positionanimation = document.querySelector('.position-animation');
 
            
             const initialSize = 450;
+            const initialSizeMed = 150;
+
             const scaleFactor = 39;
             const moveFactor = 39;
                             
@@ -491,13 +537,22 @@
      
 
 
-        
+                const scaleFactorMed = 27;
+                const moveFactorMed = 100;
                 const newSize = initialSize + scrollPosition * scaleFactor;
                 const moveRight = scrollPosition * moveFactor;
+
+                const newSizeMed = initialSizeMed + scrollPosition * scaleFactorMed;
+                const moveRightMed = scrollPosition * moveFactorMed;
+
         
                 logo.style.width = `${newSize}px`;
                 logo.style.height = 'auto'; 
                 logo.style.paddingLeft = `${moveRight}px`;
+                logoMed.style.width = `${newSizeMed}px`;
+                logoMed.style.height = 'auto';
+                logoMed.style.paddingLeft = `${moveRightMed}px`;
+                
             });
         });
         

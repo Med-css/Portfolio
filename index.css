@@ -68,6 +68,18 @@ button{
     animation-delay: 2.6s;
     
 }
+.logoMed{
+    position: absolute;
+    top: 55%;
+    left: 83%;
+    width: 150px;
+    opacity: 0;
+    transform: translate(-83%, -55%);
+    animation: fadeInLogo 0.5s ease-in-out forwards;
+    animation-delay: 2.6s;
+    
+}
+
 #particlesjs{
     position: absolute;
     top: 50%;
@@ -374,7 +386,6 @@ main h1{
     transition: all 0.5s ease-in-out;
     padding-left: 4em;
     padding-top: 20vh;
-    padding-bottom: 40vh;
     box-sizing: border-box;
 
 }
@@ -858,5 +869,25 @@ main h1{
 }
 .header-fix-button button{
     font-size: 10px;
+}
+}
+
+.image-animation{
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    z-index: 5;
+}
+.logoMed2{
+    width: 900px;
+}
+@media (max-width: 750px) {
+    .logoMed2{
+        transform: translateX(-200px);
+        width: 750px;
+    }
+
+.skills{
+    padding-left: 0em;
 }
 }
