@@ -27,7 +27,7 @@
             </div>
         </section>
 
-        <h1>Med.css</h1>
+        <h1 class="med-css">Med.css</h1>
         <section class="contact-item">
             <div class="item">
                 <a href="mailto:erraesmehdi@hotmail.com" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
@@ -93,7 +93,7 @@
 
     </main>
     <section class="section2" id="section2">
-        <div class="wordAnimation">
+        <div class="wordAnimation" id="word">
             <div class="inner-container">
             <h1>P</h1>
             <h1>R</h1>
@@ -142,11 +142,12 @@
         <a>Découvrir le projet</a>
       </div>
     </div>
-
   </div>
+
         
 
     </section>
+
         <section class="skills" id="section3">
            <div class="list-skills">
         <h1>S</h1>
@@ -201,6 +202,10 @@
                         <img src="./img/logo/java.png" alt="java">
                         <p>Java</p>
                         </div>
+                        <div class="item-child-skill">
+                        <img src="./img/logo/webgl.png" alt="webGL">
+                        <p>WebGL</p>
+                        </div>
 
 
                     </div>
@@ -222,35 +227,35 @@
                     </div>
                     <div class="list-item">
                          <div class="item-child-skill">
-                        <img src="./img/logo/Particles.png" alt="html">
+                        <img src="./img/logo/Particles.png" alt="Particles.js">
                         <p>Particles.js</p>
                         </div>
                         <div class="item-child-skill">
-                        <img src="./img/logo/crypto.png" alt="css">
+                        <img src="./img/logo/crypto.png" alt="Crypto.js">
                         <p>Crypto.js</p>
                         </div>
                         <div class="item-child-skill">
-                        <img src="./img/logo/three.png" alt="js">
+                        <img src="./img/logo/three.png" alt="Three.js">
                         <p>Three.js</p>
                         </div>
                         <div class="item-child-skill">
-                        <img src="./img/logo/quill.png" alt="ajax">
+                        <img src="./img/logo/quill.png" alt="Quill.js">
                         <p>Quill.js</p>
                         </div>
                         <div class="item-child-skill">
-                        <img src="./img/logo/typed.png" alt="php">
+                        <img src="./img/logo/typed.png" alt="Typed.js">
                         <p>Typed.js</p>
                         </div>
                         <div class="item-child-skill">
-                        <img src="./img/logo/croppr.png" alt="sql">
+                        <img src="./img/logo/croppr.png" alt="Croppr.js">
                         <p>Croppr.js</p>
                         </div>
                         <div class="item-child-skill">
-                        <img src="./img/logo/jspdf.png" alt="java">
+                        <img src="./img/logo/jspdf.png" alt="jSPDF.js">
                         <p>jSPDF.js</p>
                         </div>
                         <div class="item-child-skill">
-                        <img src="./img/logo/html2canvas.png" alt="java">
+                        <img src="./img/logo/html2canvas.png" alt="HTML2Canvas">
                         <p>HTML2Canvas</p>
                         </div>
 
@@ -269,15 +274,15 @@
                     </div>
                     <div class="list-item">
                         <div class="item-child-skill">
-                        <img src="./img/logo/figma.png" alt="html">
+                        <img src="./img/logo/figma.png" alt="Figma">
                         <p>Figma</p>
                         </div>
                         <div class="item-child-skill">
-                        <img src="./img/logo/vscode.png" alt="css">
+                        <img src="./img/logo/vscode.png" alt="VS Code">
                         <p>VS Code</p>
                         </div>
                         <div class="item-child-skill">
-                        <img src="./img/logo/capcut.png" alt="js">
+                        <img src="./img/logo/capcut.png" alt="CapCut">
                         <p>CapCut</p>
                         </div>
                         <div class="item-child-skill">
@@ -426,21 +431,17 @@
         document.addEventListener('DOMContentLoaded', function() {
             let i = 0;
             const about = document.querySelector('.about');
+            const section2 = document.querySelector('#section2');
+
             const logo = document.querySelector('.logo');
             const background = document.querySelector('.background-website');
             const positionanimation = document.querySelector('.position-animation');
-            const headerbutton = document.querySelector('.header-fix-button');
 
            
             const initialSize = 450;
             const scaleFactor = 39;
             const moveFactor = 39;
-                                const vhToPixels = (vh) => {
-                         return (window.innerHeight * vh) / 100;
-                    };
-                     const thresholdInVh = 360; // 300vh
-                    const thresholdInPixels = vhToPixels(thresholdInVh);
-
+                            
         
             window.addEventListener('scroll', function() {
                 const scrollPosition = window.scrollY;
@@ -456,10 +457,10 @@
                 // Show or hide the background based on scroll position
                 if (scrollPosition < viewportHeight) {
                     background.style.opacity = '1';
+
                     background.style.zIndex = '4';
                     about.style.opacity = '0';
-                    headerbutton.style.backgroundColor = '#7831b68a';
-                    headerbutton.classList.remove('active');
+                    section2.style.opacity = '0';
 
 
 
@@ -477,16 +478,14 @@
                             i++;
                     }
                     about.style.opacity = '1';
+                    section2.style.opacity = '1';
+
                     positionanimation.style.display = 'block';
                     headerbutton.style.backgroundColor = '#A9AC80';
                     headerbutton.classList.add('active');
                    
 
-                    if (scrollPosition > thresholdInPixels) {
-                        headerbutton.style.backgroundColor = '#7831b68a';
-                        headerbutton.classList.remove('active');
-
-                    }
+               
 
                 }
      
@@ -733,37 +732,54 @@
     };
 </script>
 </body>
-</html>
-
-
-<script>
+</html><script>
 document.addEventListener("DOMContentLoaded", () => {
-    const buttons = [
-        { range: [0, 100], btn: "#btn1" },
-        { range: [100, 190], btn: "#btn2" },
-        { range: [190, 360], btn: "#btn3" },
-        { range: [360, 600], btn: "#btn4" }
+    const sections = [
+        { id: "#header", btn: "#btn1" },
+        { id: "#section1", btn: "#btn2" },
+        { id: "#section2", btn: "#btn3" },
+        { id: "#section3", btn: "#btn4" }
     ];
 
     function updateActiveButton() {
-        const scrollVh = window.scrollY / window.innerHeight * 100; // scroll en vh
+        let activeBtn = "#btn1"; // par défaut
+        let currentSectionId = "#header"; // par défaut
 
-        buttons.forEach(({ range, btn }) => {
-            const [startVh, endVh] = range;
-            const element = document.querySelector(btn);
-            if (scrollVh >= startVh && scrollVh < endVh) {
-                element.classList.add("active");
-            } else {
-                element.classList.remove("active");
+        for (let i = sections.length - 1; i >= 0; i--) {
+            const section = document.querySelector(sections[i].id);
+            if (section && window.scrollY >= section.offsetTop - 10) {
+                activeBtn = sections[i].btn;
+                currentSectionId = sections[i].id;
+                break;
+            }
+        }
+
+        // Gérer les boutons
+        sections.forEach(({ btn }) => {
+            const button = document.querySelector(btn);
+            if (button) {
+                button.classList.toggle("active", btn === activeBtn);
             }
         });
+
+        // Gérer .header-fix-button
+        const fixButton = document.querySelector(".header-fix-button");
+        if (fixButton) {
+            if (currentSectionId === "#header" || currentSectionId === "#section3") {
+                fixButton.classList.remove("active");
+                fixButton.style.backgroundColor = '#7831b68a';
+
+            } else {
+                fixButton.classList.add("active");
+                fixButton.style.backgroundColor = '#A9AC80';
+
+            }
+        }
     }
 
     window.addEventListener("scroll", updateActiveButton);
     updateActiveButton();
 });
-
-
 </script>
 
 
@@ -803,7 +819,7 @@ document.getElementById('btn4').onclick = function () {
 
             // Définir les positions de début et de fin pour l'effet
             const startScroll = 250 * window.innerHeight / 100; // 250vh en pixels
-            const endScroll = 550 * window.innerHeight / 100;   // 550vh en pixels
+            const endScroll = 500 * window.innerHeight / 100;   // 550vh en pixels
 
             if (scrollPosition >= startScroll && scrollPosition <= endScroll) {
                 // Calculer le nouveau gap en fonction de la position de défilement

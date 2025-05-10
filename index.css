@@ -25,6 +25,7 @@ p{
 h1{
     font-size: 4.5rem;
 }
+
 button{
     font-family: sans-serif;
     font-weight: 400;
@@ -123,6 +124,16 @@ header h1{
     grid-template-columns: 1fr 1fr;
     width: 40%;
 }
+@media (max-width: 1000px) {
+ 
+    .contact-item{
+        width: 50%;
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
 .item{
     display: flex;
     gap: 10px;
@@ -153,6 +164,7 @@ header h1{
     animation-delay: 1.4s;
 }
 
+
 .header-fix-button{
     position: fixed;
     bottom: 3%;
@@ -171,8 +183,6 @@ header h1{
     animation-delay: 1.6s;
     z-index: 150;
     transition: all 0.3s ease-in-out;
-
-
 }
 .header-fix-button button{
     padding: 1em 3em;
@@ -194,6 +204,25 @@ header h1{
     animation: fadeIn 0.5s ease-in-out forwards;
     transition: all 0.3s ease-in-out;
 
+}
+@media (max-width: 700px) {
+    .header-fix-button{
+        width: 100% !important;
+        border-radius: 0;
+       
+    }
+    .header-fix-button button{
+        width: 100% !important;
+        padding: 1em 0em;
+        border-radius: 0px;
+        background-color: transparent;
+        color: white;
+        font-family: sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        letter-spacing: 1px;
+        font-size: 15px;
+    }
 }
 .header-fix-button button:hover{
     background-color: #7831b654;
@@ -275,6 +304,7 @@ main{
     padding-bottom: 10vh;
     padding-left: 4em;
     box-sizing: border-box;
+    overflow: hidden;
 }
 .about-content{
     display: flex;
@@ -364,6 +394,7 @@ main h1{
     padding-bottom: 20vh;
     box-sizing: border-box;
     position: relative;
+    opacity: 0;
 }
 .section2.active {
     bottom: -230vh;
@@ -450,6 +481,50 @@ main h1{
       transition: .5s all ease;
       z-index: 400;
     }
+    /*responsive design*/
+    @media (max-width: 934px) {
+        .wrapperProject{
+            overflow-x: scroll;
+            overflow-y: hidden;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        #c0{
+            left: 300px;
+            width: 300px !important;
+        }
+        #c1{
+            left: 600px;
+                        width: 300px !important;
+
+        }
+        #c2{
+            left: 0px;
+            width: 300px !important;
+
+        }
+        #c3{
+            left: 180vw;
+            width: 300px !important;
+            display: block;
+
+        }
+
+
+
+    }
+    @media (max-width: 700px) {
+        #section2{
+                padding-left: 0.5em;
+
+        }
+              #section1{
+                padding-left: 0.5em;
+
+        }
+    }
+    
+
 
 
     
@@ -708,4 +783,80 @@ main h1{
     width: 100px;
     height: 100px;
     object-fit: contain;
+}
+
+
+@media (max-width: 640px) {
+       header{
+        z-index: 10;
+    }
+    .med-css{
+        display: none;
+    }
+    .contact-item{
+        opacity: 0;
+        pointer-events: none;
+      
+
+    }
+ 
+  
+
+
+    .logo{
+  
+    animation-delay: 0.6s;
+    
+}
+.header-fix-button button:nth-child(1){
+    animation-delay: 1s;
+}
+.header-fix-button button:nth-child(2){
+    animation-delay: 1.2s;
+}
+.header-fix-button button:nth-child(3){
+    animation-delay: 1.4s;
+}
+.header-fix-button button:nth-child(4){
+    animation-delay: 1.6s;
+}
+.header-fix-button{
+        animation-delay: 0.8s;
+
+}
+
+
+}
+@media (max-width: 500px) {
+    h1{
+        font-size: 3rem;
+        text-align: center;
+    }
+    main{
+            grid-template-columns: 1fr;
+
+    }
+    main p{
+    color: #F5F5DC;
+    max-width: 60% !important;
+    word-wrap: break-word;
+    padding-left: 1em;
+    
+}
+.about-content{
+    height: auto;
+}
+}
+@media (max-width: 350px) {
+
+    main p{
+    color: #F5F5DC;
+    max-width: 50% !important;
+    word-wrap: break-word;
+    padding-left: 1em;
+    
+}
+.header-fix-button button{
+    font-size: 10px;
+}
 }
