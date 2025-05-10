@@ -94,36 +94,37 @@
           <div class="wrapperProject">
     <div class="containerProject" id="c0">
       <div class="image" id="i0">
-      
+        <img src="./img/lecri.png">
       </div>
       <div class="story" id="s0">
         <div class="info">
-          <h3>Pyramids</h3>
-          <p>Built during a time when Egypt was one of the richest and most powerful civilizations in the world. Their massive scale reflects the unique role that the pharaoh played in ancient Egyptian society.</p>
+          <h3>WebGL Project</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo aperiam nulla delectus ipsa, tenetur iste a distinctio quia eius beatae optio blanditiis accusamus odit, corporis voluptates quas eos cupiditate ipsum.</p>
         </div>
       </div>
     </div>
     <div class="containerProject" id="c1">
       <div class="image" id="i1">
-        <div class="city">
-         
-        </div>
+                        <img src="./img/babyfootastic.png">
+
+
       </div>
       <div class="story" id="s1">
         <div class="info">
-          <h3>Stonehenge</h3>
-          <p>Stonehenge is a prehistoric monument in Wiltshire, England. It was constructed in several stages between 3000 and 1500 B.C., spanninng to the Bronze Age.</p>
+          <h3>titre</h3>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente omnis corrupti assumenda neque! Accusamus, quaerat omnis dicta, iusto temporibus quas quidem corporis animi, et voluptatibus officiis pariatur commodi odit repellat!</p>
         </div>
       </div>
     </div>
     <div class="containerProject" id="c2">
       <div class="image" id="i2">
-            <img src="./kyoto.jpg">
+                <img src="./img/babyfootastic.png">
+
       </div>
       <div class="story" id="s2">
         <div class="info">
-          <h3>Tower of Pisa</h3>
-          <p>The Leaning Tower of Pisa or simply the Tower of Pisa is the campanile, or freestanding bell tower, of the cathedral of the Italian city of Pisa, known worldwide for its unintended tilt</p>
+          <h3>Babyfootastic</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta consequuntur officia, fugiat quod atque sunt qui maxime deleniti ut doloremque quia modi exercitationem quibusdam sed repudiandae reiciendis architecto corporis eos?</p>
         </div>
       </div>
     </div>
@@ -142,17 +143,15 @@ window.addEventListener('scroll', function() {
     const section1 = document.getElementById('section1');
     const section2 = document.getElementById('section2');
 
-    // Calculate the end position of section1
     const section1End = section1.offsetTop + section1.offsetHeight;
 
-    // Define an offset (e.g., 200 pixels before the end of section1)
     const offset = 600;
 
-    // Check if the scroll position is within the offset range from the end of section1
     if (window.scrollY >= section1End - offset) {
         section2.classList.add('active');
     } else {
         section2.classList.remove('active');
+
     }
 });
 
@@ -321,7 +320,7 @@ window.addEventListener('scroll', function() {
                                 strings: ['', "About me"],
                                 typeSpeed: 100,
                                 loop: false,
-                                showCursor: false // Ajoutez cette ligne pour masquer le curseur
+                                showCursor: false 
 
                             });
                             i++;
@@ -333,14 +332,11 @@ window.addEventListener('scroll', function() {
                 }
 
         
-                // Calculate the new size based on the scroll position
                 const newSize = initialSize + scrollPosition * scaleFactor;
-                // Calculate the displacement to the right
                 const moveRight = scrollPosition * moveFactor;
         
-                // Apply the new size and displacement to the image
                 logo.style.width = `${newSize}px`;
-                logo.style.height = 'auto'; // Maintain the image proportions
+                logo.style.height = 'auto'; 
                 logo.style.paddingLeft = `${moveRight}px`;
             });
         });
