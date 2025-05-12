@@ -286,6 +286,10 @@
                         <p>VS Code</p>
                         </div>
                         <div class="item-child-skill">
+                        <img src="./img/logo/Github.png" alt="GitHub">
+                        <p>Github</p>
+                        </div>
+                        <div class="item-child-skill">
                         <img src="./img/logo/capcut.png" alt="CapCut">
                         <p>CapCut</p>
                         </div>
@@ -863,14 +867,24 @@ document.getElementById('btn2').onclick = function () {
  
 };
 document.getElementById('btn3').onclick = function () {
+  const target = document.querySelector('.wrapperProject');
+  const offset = 100; // décalage en pixels
+
+  const y = target.getBoundingClientRect().top + window.scrollY - offset;
+
   window.scrollTo({
-    top: window.innerHeight * 2,
+    top: y,
     behavior: 'smooth'
   });
 };
 document.getElementById('btn4').onclick = function () {
+  const target = document.querySelector('.skills');
+  const offset = 100; // décalage en pixels
+
+  const y = target.getBoundingClientRect().top + window.scrollY + offset;
+
   window.scrollTo({
-    top: window.innerHeight * 3.4,
+    top: y,
     behavior: 'smooth'
   });
 };
@@ -879,28 +893,33 @@ document.getElementById('btn4').onclick = function () {
 
 
 <script>
-        window.addEventListener('scroll', function() {
-            const scrollPosition = window.scrollY;
-            const innerContainer = document.querySelector('.inner-container');
+window.addEventListener('scroll', function () {
+    const scrollPosition = window.scrollY;
+    const innerContainer = document.querySelector('.inner-container');
 
-            // Définir les positions de début et de fin pour l'effet
-            const startScroll = 250 * window.innerHeight / 100; // 250vh en pixels
-            const endScroll = 500 * window.innerHeight / 100;   // 550vh en pixels
+    // Vérifie la largeur de l'écran
+    const isLargeScreen = window.innerWidth >= 1023;
 
-            if (scrollPosition >= startScroll && scrollPosition <= endScroll) {
-                // Calculer le nouveau gap en fonction de la position de défilement
-                const scrollRange = endScroll - startScroll;
-                const scrollProgress = scrollPosition - startScroll;
-                const gapProgress = 1 - (scrollProgress / scrollRange);
-                const newGap = 1 + (999 * gapProgress); // 1000px à 1px
+    // Valeurs de départ et de fin du gap selon la taille de l'écran
+    const initialGap = isLargeScreen ? 1000 : 500;
+    const finalGap = 1;
 
-                innerContainer.style.gap = newGap + 'px';
-            } else if (scrollPosition < startScroll) {
-                // Si on est avant le début de l'effet, garder le gap initial
-                innerContainer.style.gap = '1000px';
-            } else {
-                // Si on est après la fin de l'effet, garder le gap final
-                innerContainer.style.gap = '1px';
-            }
-        });
+    // Positions de scroll (en pixels)
+    const startScroll = 250 * window.innerHeight / 100; // 250vh
+    const endScroll = 500 * window.innerHeight / 100;   // 500vh
+
+    if (scrollPosition >= startScroll && scrollPosition <= endScroll) {
+        const scrollRange = endScroll - startScroll;
+        const scrollProgress = scrollPosition - startScroll;
+        const gapProgress = 1 - (scrollProgress / scrollRange);
+        const newGap = finalGap + ((initialGap - finalGap) * gapProgress);
+
+        innerContainer.style.gap = newGap + 'px';
+    } else if (scrollPosition < startScroll) {
+        innerContainer.style.gap = initialGap + 'px';
+    } else {
+        innerContainer.style.gap = finalGap + 'px';
+    }
+});
+
     </script>

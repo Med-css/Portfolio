@@ -434,6 +434,11 @@ main h1{
 
 
 }
+@media (max-width: 10023px) {
+    .inner-container{
+        gap: 500px;
+    }
+}
 
 
 
@@ -1109,6 +1114,7 @@ main h1{
         visibility: hidden;
         opacity: 0;
         pointer-events: none;
+        display: none;
     }
 
 }
