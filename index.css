@@ -877,6 +877,7 @@ main h1{
     height: 500px;
     overflow: hidden;
     z-index: 5;
+    position: relative;
 }
 .logoMed2{
     width: 900px;
@@ -890,4 +891,215 @@ main h1{
 .skills{
     padding-left: 0em;
 }
+}
+
+.test {
+    position: absolute;
+    top: 0;
+    right: calc(40% - 200px);
+
+    width: 400px;
+    height: 400px;
+ 
+
+}
+.cloud1{
+    position: absolute;
+    bottom: 12%;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    z-index: 10000000000;
+    background-image: url(./img/bubble1.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation: wave 9s ease-in-out infinite;
+    
+}
+.cloud2{
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    width: 40px;
+    height: 40px;
+    z-index: 10000000000;
+    background-image: url(./img/bubble2.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation: wave 7s ease-in-out infinite;
+}
+.cloud3{
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 400px;
+    height: 400px;
+    z-index: 10000000000;
+    background-image: url(./img/bubble3.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation: wave 6s ease-in-out infinite;
+}
+.cloud3::before{
+    content: 'Merci pour votre visite. Et si on créait quelque chose ensemble ?';
+    font-family: sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    color: #5A219F;
+    position: absolute;
+    font-size: 30px;
+    width: 75%;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -35%);
+}
+
+
+@media (max-width: 1250px) {
+    .cloud1{
+        left: 40%;
+    }
+    .cloud2{
+        left: 45%;
+    }
+    .cloud3{
+        left: 45%;
+    }
+}
+@media (max-width: 1000px) {
+    .cloud1{
+        left: 30%;
+        width: 15px;
+        height: 15px;
+    }
+    .cloud2{
+        left: 35%;
+
+        width: 25px;
+        height: 25px;
+    }
+    .cloud3{
+        left: 40%;
+        top: 20%;
+        width: 300px;
+        height: 300px;
+    }
+    .cloud3::before{
+        font-size: 20px;
+    }
+        .logoMed2{
+        transform: translateX(-150px);
+    }
+}
+
+@media (max-width: 800px) {
+ .cloud1{
+        left: 40%;
+    
+    }
+    .cloud2{
+        left: 45%;
+
+    }
+    .cloud3{
+        left: 45%;
+     
+    }
+}
+@media (max-width: 750px) {
+ .cloud1{
+    bottom: 30%;
+    
+    }
+    .cloud2{
+    bottom: 35%;
+
+    }
+    .cloud3{
+        top: 5%;
+     
+    }
+}
+@media (max-width: 550px) {
+        .logoMed2{
+        transform: translateX(-250px);
+    }
+     .cloud1{
+        left: 30%;
+    
+    }
+    .cloud2{
+        left: 35%;
+
+    }
+    .cloud3{
+        left: 35%;
+     
+    }
+
+}
+@media (max-width: 480px) {
+    .cloud1{
+        left: 30%;
+        width: 10px;
+        height: 10px;
+    }
+    .cloud2{
+        left: 35%;
+        width: 20px;
+        height: 20px;
+    }
+    .cloud3{
+        left: 35%;
+        top: 20%;
+        width: 200px;
+        height: 200px;
+    }
+    .cloud3::before{
+        font-size: 15px;
+    }
+}
+@media (max-width: 430px) {
+    .cloud1{
+        left: 40%;
+       
+    }
+    .cloud2{
+        left: 45%;
+    
+    }
+    .cloud3{
+        left: 45%;
+ 
+    }
+
+}
+@media (max-width: 400px) {
+    .cloud1{
+        left: 40%;
+        width: 12px;
+        height: 12px;
+    }
+    .cloud2{
+        left: 45%;
+        width: 18px;
+        height: 18px;
+    }
+    .cloud3{
+        left: 45%;
+        top: 25%;
+        width: 175px;
+        height: 175px;
+    }
+    .cloud3::before{
+        font-size: 12px;
+    }
+}
+@media (max-width: 372px) {
+
+    .cloud3{
+        left: 48%;
+
+    }
+
 }
