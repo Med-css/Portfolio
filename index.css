@@ -56,6 +56,8 @@ button{
     z-index: -1;
     display: block;
     transition: opacity 0.5s ease-in-out;
+    user-select: none;
+    pointer-events: none;
 }
 .logo{
     position: absolute;
@@ -117,6 +119,7 @@ header h1{
     align-items: center;
     padding: 0em 2.5em;
     box-sizing: border-box;
+    user-select: none;
 
 }
 .header-fix-infos div{
@@ -215,6 +218,7 @@ header h1{
     transform: translateY(-20px);
     animation: fadeIn 0.5s ease-in-out forwards;
     transition: all 0.3s ease-in-out;
+    user-select: none;
 
 }
 @media (max-width: 700px) {
@@ -559,12 +563,7 @@ main h1{
         object-fit: cover;
         
     }
-       .image#i2 img{
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        
-    }
+    
 
  
 
@@ -883,6 +882,9 @@ main h1{
     overflow: hidden;
     z-index: 5;
     position: relative;
+    user-select: none;
+    pointer-events: none;
+
 }
 .logoMed2{
     width: 900px;
@@ -1117,4 +1119,32 @@ main h1{
         display: none;
     }
 
+}
+
+
+.discoverProject {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #F2EECB; /* très clair pour le contraste */
+    padding: 1em 3em;
+    background: linear-gradient(135deg, #5A5E39, #6F7345);
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(90, 94, 57, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 50px;
+}
+
+.discoverProject:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(90, 94, 57, 0.6);
+    background: linear-gradient(135deg, #A89F65, #BDB45C);
+    color: #2F2F2F;
 }
