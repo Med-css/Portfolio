@@ -1103,3 +1103,12 @@ main h1{
     }
 
 }
+
+@media (max-width: 1023px) {
+    #canvas{
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+}

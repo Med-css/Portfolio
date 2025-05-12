@@ -851,10 +851,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 };
 document.getElementById('btn2').onclick = function () {
+  const target = document.getElementById('section1');
+  const offset = 425; // décalage en pixels
+
+  const y = target.getBoundingClientRect().top + window.scrollY + offset;
+
   window.scrollTo({
-    top: window.innerHeight * 1.45,
+    top: y,
     behavior: 'smooth'
   });
+ 
 };
 document.getElementById('btn3').onclick = function () {
   window.scrollTo({
