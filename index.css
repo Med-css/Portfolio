@@ -491,17 +491,9 @@ main h1{
 }
 @media (max-width: 10023px) {
     .inner-container{
-        gap: 500px;
+        gap: 300px;
     }
 }
-
-
-
-
-
-
-
-
 
 
    .wrapperProject {
@@ -1198,4 +1190,52 @@ main h1{
     box-shadow: 0 15px 30px rgba(90, 94, 57, 0.6);
     background: linear-gradient(135deg, #A89F65, #BDB45C);
     color: #2F2F2F;
+}
+
+.project {
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+
+.project::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url(./img/logo.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    filter: blur(5px);
+    z-index: 2;
+}
+.projet-header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    background-color: #F2EECB;
+    flex-direction: column;
+    max-height: 200px;
+
+}
+.logo-project{
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 50%;
+    display: block;
+    background-image: url(./img/logo.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+ 
+   
 }
