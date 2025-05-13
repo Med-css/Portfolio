@@ -149,9 +149,6 @@
   </div>
   <a class="discoverProject">Découvrir tout les projets</a>
 
-
-        
-
     </section>
 
         <section class="skills" id="section3">
@@ -475,7 +472,7 @@
                 const logo = document.querySelector('#particlesjs');
                
  
-                logo.style.display = 'none';
+                logo.style.opacity = '0';
 
             }, 2600);
         });
@@ -493,8 +490,8 @@
             const positionanimation = document.querySelector('.position-animation');
 
            
-            const initialSize = 450;
-            const initialSizeMed = 150;
+            const initialSize = logo.offsetWidth;
+            const initialSizeMed = logoMed.offsetWidth;
 
             const scaleFactor = 39;
             const moveFactor = 39;
