@@ -2,7 +2,14 @@ body{
     margin: 0;
     padding: 0;
     background-color: #F9F7F7;
+    scroll-behavior: smooth !important; scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE/Edge */
 
+}
+
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none;              /* Chrome, Safari */
 }
 h1, h2, h3, h4, h5, h6{
     font-family: "Bebas Neue", sans-serif;
@@ -117,6 +124,9 @@ header{
     padding: 9em 0em 0em 2.5em;
     position: relative;
     z-index: 2;
+        scroll-behavior: smooth !important;
+        height: 100vh;
+
 }
 
 header h1{
@@ -157,6 +167,15 @@ header h1{
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 40%;
+
+}
+.section-info-header{
+        position: absolute;
+    top: 30%;
+    left: 15%;
+    transform: translate(-15%, -30%);
+    width: 100%;
+    padding-left: 1em;
 }
 
 
@@ -167,6 +186,7 @@ header h1{
         grid-template-columns: 1fr;
 
     }
+  
 
 }
 
@@ -186,7 +206,6 @@ header h1{
 @media (min-width: 1400px) {
     .contact-item{
         width: 55%;
-        grid-template-columns: 1fr;
     }
     .item{
         font-size: 30px;
@@ -372,6 +391,8 @@ main{
     padding-left: 4em;
     box-sizing: border-box;
     overflow: hidden;
+        scroll-behavior: smooth !important;
+
 }
 .about-content{
     display: flex;
@@ -442,6 +463,8 @@ main h1{
     padding-left: 4em;
     padding-top: 20vh;
     box-sizing: border-box;
+        scroll-behavior: smooth !important;
+
 
 }
 .section2{
@@ -461,6 +484,8 @@ main h1{
     box-sizing: border-box;
     position: relative;
     opacity: 0;
+        scroll-behavior: smooth !important;
+
 }
 .section2.active {
     bottom: -230vh;

@@ -31,8 +31,11 @@
                 <button>All project</button>
             </div>
         </section>
-        <h1 class="med-css">Med.css</h1>
+        <div class="section-info-header">
+                                <h1 class="med-css">Med.css</h1>
+
         <section class="contact-item">
+
             <div class="item">
                 <a href="mailto:erraesmehdi@hotmail.com" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -60,7 +63,9 @@
                 </a>
             </div>
         </section>
+        </div>
     </header>
+
 
     <section class="header-fix-button">
         <button class="buttonfix" id="btn1">
@@ -535,9 +540,7 @@
                     section2.style.opacity = '1';
 
                     positionanimation.style.display = 'block';
-                    headerbutton.style.backgroundColor = '#A9AC80';
-                    headerbutton.classList.add('active');
-                   
+          
 
                
 
@@ -845,50 +848,66 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<!-- Script de scroll fluide --><script>
+  let scrollPosition = window.scrollY;
+  let targetPosition = window.scrollY;
 
-<script>
-    document.getElementById('btn1').onclick = function () {
-  window.scrollTo({
-    top: window.innerHeight * 0,
-    behavior: 'smooth'
-  });
-};
-document.getElementById('btn2').onclick = function () {
-  const target = document.getElementById('section1');
-  const offset = 465; // décalage en pixels
+  // Molette : inertie personnalisée
+  window.addEventListener('wheel', (e) => {
+    e.preventDefault();
 
-  const y = target.getBoundingClientRect().top + window.scrollY + offset;
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    targetPosition += e.deltaY;
 
-  window.scrollTo({
-    top: y,
-    behavior: 'smooth'
-  });
- 
-};
-document.getElementById('btn3').onclick = function () {
-  const target = document.querySelector('.wrapperProject');
-  const offset = 100; // décalage en pixels
+    // Clamp dans les limites du document
+    targetPosition = Math.max(0, Math.min(targetPosition, maxScroll));
+  }, { passive: false });
 
-  const y = target.getBoundingClientRect().top + window.scrollY - offset;
+  // Fonction que les boutons peuvent appeler
+  function scrollToSmoothly(y) {
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    targetPosition = Math.max(0, Math.min(y, maxScroll));
+  }
 
-  window.scrollTo({
-    top: y,
-    behavior: 'smooth'
-  });
-};
-document.getElementById('btn4').onclick = function () {
-  const target = document.querySelector('.skills');
-  const offset = 100; // décalage en pixels
+  // Boucle de scroll fluide
+  function smoothScroll() {
+    scrollPosition += (targetPosition - scrollPosition) * 0.1;
+    window.scrollTo(0, scrollPosition);
+    requestAnimationFrame(smoothScroll);
+  }
 
-  const y = target.getBoundingClientRect().top + window.scrollY + offset;
-
-  window.scrollTo({
-    top: y,
-    behavior: 'smooth'
-  });
-};
-
+  smoothScroll();
 </script>
+
+
+<!-- Script pour les boutons -->
+<script>
+  document.getElementById('btn1').onclick = function () {
+    scrollToSmoothly(window.innerHeight * 0);
+  };
+
+  document.getElementById('btn2').onclick = function () {
+    const target = document.getElementById('section1');
+    const offset = 465;
+    const y = target.getBoundingClientRect().top + window.scrollY + offset;
+    scrollToSmoothly(y);
+  };
+
+  document.getElementById('btn3').onclick = function () {
+    const target = document.querySelector('.wrapperProject');
+    const offset = 100;
+    const y = target.getBoundingClientRect().top + window.scrollY - offset;
+    scrollToSmoothly(y);
+  };
+
+  document.getElementById('btn4').onclick = function () {
+    const target = document.querySelector('.skills');
+    const offset = 100;
+    const y = target.getBoundingClientRect().top + window.scrollY + offset;
+    scrollToSmoothly(y);
+  };
+</script>
+
 
 
 <script>
@@ -922,3 +941,4 @@ window.addEventListener('scroll', function () {
 });
 
     </script>
+
