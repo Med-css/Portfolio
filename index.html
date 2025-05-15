@@ -887,6 +887,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <!-- Script pour les boutons -->
 <script>
+      if (isDesktop) {
+
   document.getElementById('btn1').onclick = function () {
     scrollToSmoothly(window.innerHeight * 0);
   };
@@ -911,8 +913,52 @@ document.addEventListener("DOMContentLoaded", () => {
     const y = target.getBoundingClientRect().top + window.scrollY + offset;
     scrollToSmoothly(y);
   };
-</script>
+}
+else {
+    
+    document.getElementById('btn1').onclick = function () {
+  window.scrollTo({
+    top: window.innerHeight * 0,
+    behavior: 'smooth'
+  });
+};
+document.getElementById('btn2').onclick = function () {
+  const target = document.getElementById('section1');
+  const offset = 465; // décalage en pixels
 
+  const y = target.getBoundingClientRect().top + window.scrollY + offset;
+
+  window.scrollTo({
+    top: y,
+    behavior: 'smooth'
+  });
+ 
+};
+document.getElementById('btn3').onclick = function () {
+  const target = document.querySelector('.wrapperProject');
+  const offset = 100; // décalage en pixels
+
+  const y = target.getBoundingClientRect().top + window.scrollY - offset;
+
+  window.scrollTo({
+    top: y,
+    behavior: 'smooth'
+  });
+};
+document.getElementById('btn4').onclick = function () {
+  const target = document.querySelector('.skills');
+  const offset = 100; // décalage en pixels
+
+  const y = target.getBoundingClientRect().top + window.scrollY + offset;
+
+  window.scrollTo({
+    top: y,
+    behavior: 'smooth'
+  });
+};
+
+}
+</script>
 
 
 <script>
