@@ -34,7 +34,7 @@
         <div class="section-info-header">
                                 <h1 class="med-css">Med.css</h1>
 
-                                
+
         <section class="contact-item">
 
             <div class="item">
@@ -848,36 +848,40 @@ document.addEventListener("DOMContentLoaded", () => {
     updateActiveButton();
 });
 </script>
+<script>
+  // Vérifie si ce n’est PAS un appareil mobile
+  const isDesktop = !/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-<!-- Script de scroll fluide --><script>
-  let scrollPosition = window.scrollY;
-  let targetPosition = window.scrollY;
+  if (isDesktop) {
+    let scrollPosition = window.scrollY;
+    let targetPosition = window.scrollY;
 
-  // Molette : inertie personnalisée
-  window.addEventListener('wheel', (e) => {
-    e.preventDefault();
+    // Molette : inertie personnalisée
+    window.addEventListener('wheel', (e) => {
+      e.preventDefault();
 
-    const maxScroll = document.body.scrollHeight - window.innerHeight;
-    targetPosition += e.deltaY;
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      targetPosition += e.deltaY;
 
-    // Clamp dans les limites du document
-    targetPosition = Math.max(0, Math.min(targetPosition, maxScroll));
-  }, { passive: false });
+      // Clamp dans les limites du document
+      targetPosition = Math.max(0, Math.min(targetPosition, maxScroll));
+    }, { passive: false });
 
-  // Fonction que les boutons peuvent appeler
-  function scrollToSmoothly(y) {
-    const maxScroll = document.body.scrollHeight - window.innerHeight;
-    targetPosition = Math.max(0, Math.min(y, maxScroll));
+    // Fonction que les boutons peuvent appeler
+    function scrollToSmoothly(y) {
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      targetPosition = Math.max(0, Math.min(y, maxScroll));
+    }
+
+    // Boucle de scroll fluide
+    function smoothScroll() {
+      scrollPosition += (targetPosition - scrollPosition) * 0.1;
+      window.scrollTo(0, scrollPosition);
+      requestAnimationFrame(smoothScroll);
+    }
+
+    smoothScroll();
   }
-
-  // Boucle de scroll fluide
-  function smoothScroll() {
-    scrollPosition += (targetPosition - scrollPosition) * 0.1;
-    window.scrollTo(0, scrollPosition);
-    requestAnimationFrame(smoothScroll);
-  }
-
-  smoothScroll();
 </script>
 
 
