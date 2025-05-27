@@ -1,0 +1,415 @@
+// Image Animation
+const images = [
+    document.getElementById('med1'),
+    document.getElementById('med2'),
+    document.getElementById('med3'),
+    document.getElementById('med4')
+];
+
+let currentIndex = 0;
+const sequence = [0, 1, 2, 3, 2, 1, 0];
+
+function showNextImage() {
+    images.forEach(img => {
+        img.style.display = 'none';
+    });
+
+    images[sequence[currentIndex]].style.display = 'block';
+    currentIndex = (currentIndex + 1) % sequence.length;
+
+    if (currentIndex === 0) {
+        setTimeout(showNextImage, 2000);
+    } else {
+        setTimeout(showNextImage, 100);
+    }
+}
+
+showNextImage();
+
+// Particles.js Initialization
+document.addEventListener('DOMContentLoaded', function() {
+    var particlesConfig = {
+        "particles": {
+            "number": {
+                "value": 500,
+                "density": {
+                    "enable": true,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#9c27b0"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                }
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 40,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": false
+            },
+            "move": {
+                "enable": true,
+                "speed": 2,
+                "direction": "top",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "repulse"
+                },
+                "onclick": {
+                    "enable": true,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 400,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 8,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 200,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": true
+    };
+
+    var pJS = particlesJS('particlesjs', particlesConfig);
+
+    setTimeout(function() {
+        const logo = document.querySelector('#particlesjs');
+        logo.style.opacity = '0';
+    }, 2600);
+});
+
+// Scroll Animation
+document.addEventListener('DOMContentLoaded', function() {
+    let i = 0;
+    const about = document.querySelector('.about');
+    const logo = document.querySelector('.logo');
+    const logoMed = document.querySelector('.logoMed');
+    const background = document.querySelector('.background-website');
+
+    const initialSize = logo.offsetWidth;
+    const initialSizeMed = logoMed.offsetWidth;
+
+    const scaleFactor = 39;
+    const moveFactor = 39;
+
+    window.addEventListener('scroll', function() {
+        const scrollPosition = window.scrollY;
+        const viewportHeight = window.innerHeight;
+
+        if (scrollPosition === 0) {
+            background.style.zIndex = -1;
+        } else {
+            background.style.zIndex = 4;
+        }
+
+        if (scrollPosition < viewportHeight) {
+            background.style.opacity = '1';
+            background.style.zIndex = '4';
+            about.style.opacity = '0';
+        } else {
+            background.style.opacity = '0';
+            background.style.zIndex = '-100';
+           
+            about.style.opacity = '1';
+        }
+
+        const scaleFactorMed = 27;
+        const moveFactorMed = 100;
+        const newSize = initialSize + scrollPosition * scaleFactor;
+        const moveRight = scrollPosition * moveFactor;
+
+        const newSizeMed = initialSizeMed + scrollPosition * scaleFactorMed;
+        const moveRightMed = scrollPosition * moveFactorMed;
+
+        logo.style.width = `${newSize}px`;
+        logo.style.height = 'auto';
+        logo.style.paddingLeft = `${moveRight}px`;
+        logoMed.style.width = `${newSizeMed}px`;
+        logoMed.style.height = 'auto';
+        logoMed.style.paddingLeft = `${moveRightMed}px`;
+    });
+});
+
+// Canvas Animation
+const FPS = 60;
+const PI_2 = 2 * Math.PI;
+
+const canvas = document.getElementById("canvas");
+const context = canvas.getContext("2d");
+
+let mouseX = canvas.width / 2;
+let mouseY = canvas.height / 2;
+let lastMouseDirectionX = 0;
+let lastMouseDirectionY = 0;
+
+const windowResizeHandler = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+};
+
+window.addEventListener('resize', windowResizeHandler, false);
+window.addEventListener('mousemove', (event) => {
+    lastMouseDirectionX = event.clientX - mouseX;
+    lastMouseDirectionY = event.clientY - mouseY;
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+});
+
+windowResizeHandler();
+
+const range = (a, b) => (b - a) * Math.random() + a;
+
+const drawCircle = (x, y, r, style) => {
+    context.beginPath();
+    context.arc(x, y, r, 0, PI_2, false);
+    context.fillStyle = style;
+    context.fill();
+};
+
+class Particle {
+    constructor(x, y, vx, vy) {
+        this.x = x;
+        this.y = y;
+        this.vx = vx + range(-0.5, 0.5);
+        this.vy = vy + range(-0.5, 0.5);
+        this.opacity = 1;
+        this.r = range(1, 4);
+        this.color = `rgba(${range(100, 255)}, ${range(100, 200)}, ${range(200, 255)}, ${this.opacity})`;
+    }
+
+    step() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.opacity -= 0.01;
+        if (this.opacity <= 0) {
+            this.destroyed = true;
+        }
+    }
+
+    draw() {
+        if (this.opacity <= 0) return;
+        drawCircle(this.x, this.y, this.r, this.color);
+    }
+}
+
+class Flame {
+    constructor() {
+        this.x = mouseX;
+        this.y = mouseY;
+        this.r = 12;
+    }
+
+    step() {
+        return false;
+    }
+
+    draw() {
+        const dx = mouseX - this.x;
+        const dy = mouseY - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        const minDistance = 50;
+        if (distance > minDistance) {
+            this.x += (dx / distance) * minDistance * 0.05;
+            this.y += (dy / distance) * minDistance * 0.05;
+        }
+
+        for (let i = 0; i < 2; i++) {
+            const vx = -lastMouseDirectionX * 0.1;
+            const vy = -lastMouseDirectionY * 0.1;
+            w.addEntity(Particle, this.x, this.y, vx, vy);
+        }
+
+        const g = context.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r * 2);
+        g.addColorStop(0, `rgba(100, 100, 255, ${range(0.7, 0.9)})`);
+        g.addColorStop(1, "rgba(100, 100, 255, 0)");
+        drawCircle(this.x, this.y, this.r * 2, g);
+
+        drawCircle(this.x + range(-2, 2), this.y + range(-2, 2), this.r, `rgba(100, 100, 255, ${range(0.5, 0.8)})`);
+    }
+}
+
+class World {
+    constructor() {
+        this.entities = {};
+        this.i = 0;
+        this.frame = 0;
+        setInterval(() => {
+            this.loop();
+        }, 1000 / FPS);
+    }
+
+    addEntity(klass, ...args) {
+        this.entities[this.i] = new klass(...args);
+        this.i -= 1;
+    }
+
+    loop() {
+        this.frame++;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        for (const k in this.entities) {
+            const entity = this.entities[k];
+            if (entity.destroyed === true) {
+                delete this.entities[k];
+                continue;
+            }
+            entity.step();
+            entity.draw();
+        }
+    }
+}
+
+const w = new World();
+w.addEntity(Flame);
+
+// Inclure GSAP via un CDN
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+// Inclure GSAP via un CDN
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+const medplan = document.querySelector('.medplan');
+
+// Bloquer le défilement et animer les plans
+document.addEventListener('DOMContentLoaded', function() {
+    const section1 = document.getElementById('section1');
+    const body = document.body;
+    const plans = document.querySelectorAll('.plan');
+    let scrollLocked = false;
+    let animationTriggered = false; // Variable pour suivre si l'animation a déjà été déclenchée
+
+    if (section1) {
+
+        // Définir les positions initiales des plans avec GSAP
+        gsap.set(plans[0], { y: 0 }); // Position de départ pour le premier plan
+        gsap.set(plans[1], { y: 50 }); // Position de départ pour le deuxième plan
+        gsap.set(plans[2], { y: 100 }); // Position de départ pour le troisième plan
+        gsap.set(plans[3], { y: 150 }); // Position de départ pour le quatrième plan
+        gsap.set(plans[4], { y: 200 }); // Position de départ pour le cinquième plan
+
+        window.addEventListener('scroll', function(event) {
+            const scrollPosition = window.scrollY;
+            const section1Top = section1.offsetTop;
+            const section1Height = section1.offsetHeight;
+
+            if (scrollPosition >= section1Top && scrollPosition < section1Top + section1Height && !animationTriggered) {
+                        setTimeout(() => {
+            medplan.classList.remove('disabled');
+        }, 4500);
+        setTimeout(() => {
+                         requestAnimationFrame(() => {
+                    window.scrollTo(0, section1Top);
+                });
+        }, 10);
+           
+
+                animationTriggered = true; // Marquer que l'animation a été déclenchée
+                scrollLocked = true;
+                window.scrollTo(0, section1Top);
+                event.preventDefault();
+                body.classList.add('no-scroll');
+
+                // Animer les plans avec GSAP vers leurs positions finales
+                gsap.to(plans[0], { y: -250, duration: 3, ease: "power1.out" }); // Position d'arrivée pour le premier plan
+                gsap.to(plans[1], { y: -250, duration: 3, ease: "power1.out" }); // Position d'arrivée pour le deuxième plan
+                gsap.to(plans[2], { y: -100, duration: 3.5, ease: "power1.out" }); // Position d'arrivée pour le troisième plan
+                gsap.to(plans[3], { y: -150, duration: 4, ease: "power1.out" }); // Position d'arrivée pour le quatrième plan
+                gsap.to(plans[4], { y: -200, duration: 5, ease: "power1.out" }); // Position d'arrivée pour le cinquième plan
+
+                // Réactiver le défilement après 8 secondes
+                setTimeout(() => {
+                    body.classList.remove('no-scroll');
+                    scrollLocked = false;
+                }, 8000);
+            }
+        }, { passive: false });
+
+        // Empêcher le défilement via les touches du clavier
+        window.addEventListener('keydown', function(event) {
+            if (scrollLocked && [32, 33, 34, 35, 36, 38, 40].includes(event.keyCode)) {
+                event.preventDefault();
+            }
+        });
+
+        // Empêcher le défilement via la souris et le pavé tactile
+        window.addEventListener('wheel', function(event) {
+            const scrollPosition = window.scrollY;
+            const section1Top = section1.offsetTop;
+            const section1Height = section1.offsetHeight;
+
+            if (scrollLocked && scrollPosition >= section1Top && scrollPosition < section1Top + section1Height) {
+                event.preventDefault();
+            }
+        }, { passive: false });
+
+        // Empêcher le défilement via les écrans tactiles
+        window.addEventListener('touchmove', function(event) {
+            const scrollPosition = window.scrollY;
+            const section1Top = section1.offsetTop;
+            const section1Height = section1.offsetHeight;
+
+            if (scrollLocked && scrollPosition >= section1Top && scrollPosition < section1Top + section1Height) {
+                event.preventDefault();
+            }
+        }, { passive: false });
+    }
+});

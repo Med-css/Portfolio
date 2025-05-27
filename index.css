@@ -6,6 +6,9 @@ body{
   -ms-overflow-style: none;   /* IE/Edge */
 
 }
+body.no-scroll {
+    overflow: hidden;
+}
 
 
 html::-webkit-scrollbar, body::-webkit-scrollbar {
@@ -379,29 +382,20 @@ header h1{
 
 
 main{
-    display: grid;
-    grid-template-columns: 0.9fr 1fr;
     width: 100%;
     z-index: 2;
     opacity: 0;
-    background-color: #8B8E64;
+    background-color: black;
     transition: all 0.5s ease-in-out;
     position: relative;
-    padding-top: 75vh;
     padding-bottom: 10vh;
-    padding-left: 4em;
     box-sizing: border-box;
     overflow: hidden;
         scroll-behavior: smooth !important;
+        height: 110vh;
 
 }
-.about-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 500px;
 
-}
 
 main p{
     color: #F5F5DC;
@@ -927,9 +921,7 @@ main h1{
     padding-left: 1em;
     
 }
-.about-content{
-    height: auto;
-}
+
 }
 @media (max-width: 350px) {
 
@@ -1264,4 +1256,63 @@ main h1{
     background-color: white;
  
    
+}
+.about{
+    height: 100vh;
+}
+
+.plan{
+    width: 100%;
+    position: relative;
+}
+
+.plan {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    will-change: transform; /* Optimisation pour les animations */
+    height: 100vh;
+          object-fit: cover;
+
+}
+
+.plan:nth-child(1) {
+    top: 0;
+    z-index: 1;
+}
+
+.plan:nth-child(2) {
+    top: 50px;
+    z-index: 2;
+}
+
+.plan:nth-child(3) {
+    top: 100px;
+    z-index: 3;
+}
+
+.plan:nth-child(4) {
+    top: 150px;
+    z-index: 4;
+}
+
+.plan:nth-child(5) {
+    top: 200px;
+    z-index: 5;
+}
+.medplan{
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+    transform: translateX(-30%) translateY(20%);
+    transition: all 1s ease-in-out, display 0s;
+
+    
+    width: 400px;
+}
+.medplan.disabled{
+        transform: translateX(-30%) translateY(100%);
+
+
 }
