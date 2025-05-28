@@ -5,6 +5,7 @@ body{
     scroll-behavior: smooth !important; scrollbar-width: none;      /* Firefox */
   -ms-overflow-style: none;   /* IE/Edge */
 
+
 }
 a{
    font-family: "Poppins", sans-serif;
@@ -486,6 +487,9 @@ main h1{
     z-index: 2;
     position: relative;
 }
+.section2 h1{
+    margin-bottom: 0.2em;
+}
 #section3{
     opacity: 0;
 }
@@ -502,7 +506,7 @@ main h1{
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     padding: 2rem;
-    background-color: #f9f9f9;
+
 }
 
 .cardproject-2 {
@@ -511,7 +515,69 @@ main h1{
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s ease;
+    position: relative;
 }
+.hovercard{
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(10px);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: white !important;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.8s ease-in-out;
+    
+}
+.hovercard button{
+    background-color: #5A219F;
+}
+.hovercard button:hover{
+    scale: 1.05;
+}
+.hovercard p, .hovercard h2, .hovercard h3{
+    color: white !important;
+    max-width: 90%;
+}
+@media screen and (max-width: 580px){
+    .hovercard p{
+        font-size: 12px;
+    }
+    .hovercard h2{
+        margin: 0;
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 400px){
+    .hovercard p{
+    max-width: 95%;
+    font-size: 11px;
+    }
+    .hovercard h2{
+        max-width: 95%;
+        font-size: 14px;
+
+    }
+      .hovercard h3{
+        max-width: 95%;
+
+    }
+}
+
+.hovercard.active{
+    pointer-events: all;
+    opacity: 1;
+}
+
 
 .cardproject-2:hover {
     transform: translateY(-5px);
@@ -532,6 +598,7 @@ main h1{
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     overflow: hidden;
     transition: transform 0.3s ease;
+    position: relative;
 }
 
 .cardproject:hover {

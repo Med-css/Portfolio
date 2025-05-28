@@ -147,7 +147,7 @@ let firstscrollanimation = false;
 
 // Scroll Animation
 document.addEventListener('DOMContentLoaded', function() {
-    let i = 0;
+    let firstscrollanimation = false;
     const about = document.querySelector('.about');
     const logo = document.querySelector('.logo');
     const logoMed = document.querySelector('.logoMed');
@@ -158,12 +158,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const scaleFactor = 39;
     const moveFactor = 39;
+    const scaleFactorMed = 27;
+    const moveFactorMed = 100;
 
-    window.addEventListener('scroll', function() {
+    const section1 = document.getElementById('section1');
+    const section1Top = section1.offsetTop;
+    const section2 = document.querySelector('.section2');
+
+    let currentScroll = 0;
+    let targetScroll = 0;
+
+    // Smooth interpolation function
+    function smoothInterpolate(current, target, factor) {
+        return current + (target - current) * factor;
+    }
+
+    function animateScroll() {
+        // Smooth interpolation factor
+        const interpolationFactor = 0.1;
+        currentScroll = smoothInterpolate(currentScroll, targetScroll, interpolationFactor);
+
+        const scrollPosition = currentScroll;
+        const viewportHeight = window.innerHeight;
+
         if (!firstscrollanimation) {
-            const scrollPosition = window.scrollY;
-            const viewportHeight = window.innerHeight;
-
             if (scrollPosition === 0) {
                 background.style.zIndex = -1;
             } else {
@@ -177,40 +195,54 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 background.style.opacity = '0';
                 background.style.zIndex = '-100';
+                about.style.opacity = '1';
+
+                // Prevent infinite scroll beyond section1
                 requestAnimationFrame(() => {
                     window.scrollTo(0, section1Top);
-                });
+                    firstscrollanimation = true;
 
-                about.style.opacity = '1';
+                    // Reset styles and allow normal scrolling
+                    background.style.position = 'absolute';
+                    logo.style.width = '';
+                    logo.style.height = '';
+                    logo.style.paddingLeft = '';
+                    logoMed.style.width = '';
+                    logoMed.style.height = '';
+                    logoMed.style.paddingLeft = '';
+                    setTimeout(() => {
+                        background.style.opacity = '1';
+                    }, 100);
+
+                    // Remove scroll event listener to allow normal scrolling
+                    window.removeEventListener('scroll', handleScroll);
+                });
             }
 
-            const scaleFactorMed = 27;
-            const moveFactorMed = 100;
             const newSize = initialSize + scrollPosition * scaleFactor;
             const moveRight = scrollPosition * moveFactor;
-
             const newSizeMed = initialSizeMed + scrollPosition * scaleFactorMed;
             const moveRightMed = scrollPosition * moveFactorMed;
 
             logo.style.width = `${newSize}px`;
             logo.style.height = 'auto';
             logo.style.paddingLeft = `${moveRight}px`;
+
             logoMed.style.width = `${newSizeMed}px`;
             logoMed.style.height = 'auto';
             logoMed.style.paddingLeft = `${moveRightMed}px`;
-        } else if (firstscrollanimation) {
-            background.style.opacity = '1';
-            background.style.zIndex = '';
-            about.style.opacity = '1';
-            logo.style.width = ``;
-            logo.style.height = '';
-            logo.style.paddingLeft = ``;
-            logoMed.style.width = ``;
-            logoMed.style.height = '';
-            logoMed.style.paddingLeft = ``;
-            background.style.position = 'absolute';
         }
-    });
+
+        requestAnimationFrame(animateScroll);
+    }
+
+    function handleScroll() {
+        targetScroll = window.scrollY;
+    }
+
+    window.addEventListener('scroll', handleScroll);
+
+    animateScroll();
 });
 
 // Canvas Animation
@@ -349,21 +381,21 @@ w.addEntity(Flame);
 const medplan = document.querySelector('.medplan');
 const headerfixbutton = document.querySelector('.header-fix-button');
 const luciole = document.querySelector('.luciole');
-// Bloquer le défilement et animer les plans
+
 document.addEventListener('DOMContentLoaded', function() {
     const section1 = document.getElementById('section1');
     const body = document.body;
     const plans = document.querySelectorAll('.plan');
     let scrollLocked = false;
-    let animationTriggered = false; // Variable pour suivre si l'animation a déjà été déclenchée
+    let animationTriggered = false;
 
     if (section1) {
         // Définir les positions initiales des plans avec GSAP
-        gsap.set(plans[0], { y: 0 }); // Position de départ pour le premier plan
-        gsap.set(plans[1], { y: 50 }); // Position de départ pour le deuxième plan
-        gsap.set(plans[2], { y: 100 }); // Position de départ pour le troisième plan
-        gsap.set(plans[3], { y: 150 }); // Position de départ pour le quatrième plan
-        gsap.set(plans[4], { y: 200 }); // Position de départ pour le cinquième plan
+        gsap.set(plans[0], { y: 0 });
+        gsap.set(plans[1], { y: 50 });
+        gsap.set(plans[2], { y: 100 });
+        gsap.set(plans[3], { y: 150 });
+        gsap.set(plans[4], { y: 200 });
 
         window.addEventListener('scroll', function(event) {
             const scrollPosition = window.scrollY;
@@ -378,32 +410,47 @@ document.addEventListener('DOMContentLoaded', function() {
                         window.scrollTo(0, section1Top);
                     });
                 }, 10);
+                              setTimeout(() => {
+                    requestAnimationFrame(() => {
+                        window.scrollTo(0, section1Top);
+                    });
+                }, 300);
 
-                animationTriggered = true; // Marquer que l'animation a été déclenchée
+                animationTriggered = true;
                 scrollLocked = true;
                 window.scrollTo(0, section1Top);
                 event.preventDefault();
                 body.classList.add('no-scroll');
 
                 // Animer les plans avec GSAP vers leurs positions finales
-                gsap.to(plans[0], { y: -250, duration: 3, ease: "power1.out" }); // Position d'arrivée pour le premier plan
-                gsap.to(plans[1], { y: -250, duration: 3, ease: "power1.out" }); // Position d'arrivée pour le deuxième plan
-                gsap.to(plans[2], { y: -100, duration: 3.5, ease: "power1.out" }); // Position d'arrivée pour le troisième plan
-                gsap.to(plans[3], { y: -150, duration: 4, ease: "power1.out" }); // Position d'arrivée pour le quatrième plan
-                gsap.to(plans[4], { y: -200, duration: 5, ease: "power1.out" }); // Position d'arrivée pour le cinquième plan
+                gsap.to(plans[0], { y: -250, duration: 3, ease: "power1.out" });
+                gsap.to(plans[1], { y: -250, duration: 3, ease: "power1.out" });
+                gsap.to(plans[2], { y: -100, duration: 3.5, ease: "power1.out" });
+                gsap.to(plans[3], { y: -150, duration: 4, ease: "power1.out" });
+                gsap.to(plans[4], { y: -200, duration: 5, ease: "power1.out" });
                 firstscrollanimation = true;
                 headerfixbutton.style.display = 'none';
                 setTimeout(() => {
                     luciole.style.opacity = '1';
                 }, 4500);
+
                 // Réactiver le défilement après 8 secondes
                 setTimeout(() => {
                     body.classList.remove('no-scroll');
                     scrollLocked = false;
+                    headerfixbutton.style.animationDelay = '0.3s';
+                    const children = headerfixbutton.children;
+                    let delay = 0.5;
+
+                    for (let i = 0; i < children.length; i++) {
+                        children[i].style.animationDelay = `${delay}s`;
+                        children[i].classList.add('your-animation-class');
+                        delay += 0.2;
+                    }
                     headerfixbutton.style.display = 'flex';
                     section2.style.opacity = 1;
                     section3.style.opacity = 1;
-                }, 8000);
+                }, 6000);
             }
         }, { passive: false });
 
