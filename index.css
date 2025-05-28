@@ -70,6 +70,7 @@ button {
     transition: opacity 0.5s ease-in-out;
     user-select: none;
     pointer-events: none;
+    overflow: hidden;
 }
 
 .logo {
@@ -329,6 +330,7 @@ main h1 {
     align-items: center;
     z-index: 2;
     position: relative;
+    overflow: hidden;
 }
 
 .section2 h1 {
