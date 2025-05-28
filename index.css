@@ -227,7 +227,6 @@ header h1 {
     animation-delay: 1.6s;
     z-index: 150;
     transition: all 0.3s ease-in-out;
-    max-width: 100px;
 }
 
 .header-fix-button button {
@@ -951,6 +950,9 @@ main h1 {
         z-index: 10;
     }
     .med-css {
+        display: none;
+    }
+    .section-info-header{
         display: none;
     }
     .contact-item {
