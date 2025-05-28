@@ -1339,7 +1339,16 @@ main h1{
     width: 400px;
 }
 .medplan.disabled{
-        transform: translateX(-30%) translateY(100%);
-
-
+    transform: translateX(-30%) translateY(100%);
 }
+    .luciole{
+        width: 100%;
+        height: 100vh;
+        z-index: 9;
+        display: block;
+        position: absolute;
+        user-select: none;
+        pointer-events: none;
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+    }

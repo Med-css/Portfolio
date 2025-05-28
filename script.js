@@ -348,7 +348,7 @@ w.addEntity(Flame);
 // GSAP Animation
 const medplan = document.querySelector('.medplan');
 const headerfixbutton = document.querySelector('.header-fix-button');
-
+const luciole = document.querySelector('.luciole');
 // Bloquer le défilement et animer les plans
 document.addEventListener('DOMContentLoaded', function() {
     const section1 = document.getElementById('section1');
@@ -393,7 +393,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 gsap.to(plans[4], { y: -200, duration: 5, ease: "power1.out" }); // Position d'arrivée pour le cinquième plan
                 firstscrollanimation = true;
                 headerfixbutton.style.display = 'none';
-
+                setTimeout(() => {
+                    luciole.style.opacity = '1';
+                }, 4500);
                 // Réactiver le défilement après 8 secondes
                 setTimeout(() => {
                     body.classList.remove('no-scroll');
