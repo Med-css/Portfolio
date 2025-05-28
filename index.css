@@ -1033,28 +1033,52 @@ main h1 {
 }
 
 @media (max-width: 750px) {
-    .logoMed2 {
-        transform: translateX(-200px);
-        width: 750px;
-    }
+
     .skills {
         padding-left: 0em;
     }
 }
-
-@media (max-width: 750px) {
-    .logoMed2 {
-        transform: translateX(-150px);
+@media (max-width: 900px){
+        .logoMed2 {
+        width: 750px;
     }
-    .cloud1 {
-        left: 40%;
+}
+
+@media (max-width: 650px) {
+   .cloud1 {
+        left: 30%;
+        width: 10px;
+        height: 10px;
+        bottom: 25%;
     }
     .cloud2 {
-        left: 45%;
+        left: 35%;
+        width: 20px;
+        height: 20px;
+        bottom: 35%;
+
     }
     .cloud3 {
-        left: 45%;
+        left: 35%;
+        top: 20%;
+        width: 200px;
+        height: 200px;
+        
     }
+    .cloud3::before {
+        font-size: 15px;
+    }
+
+}
+@media (max-width: 1200px) {
+   .logoMed2 {
+        transform: translateX(-100px);
+   }
+}
+@media (max-width: 1080px) {
+   .logoMed2 {
+        transform: translateX(-200px);
+   }
 }
 
 @media (max-width: 550px) {
