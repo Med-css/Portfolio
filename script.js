@@ -138,6 +138,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 2600);
 });
 const section1Top = section1.offsetTop;
+const section2 = document.querySelector('.section2');
+const section3 = document.querySelector('.skills');
+
 
 let firstscrollanimation = false;
 // Scroll Animation
@@ -407,6 +410,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     body.classList.remove('no-scroll');
                     scrollLocked = false;
                     headerfixbutton.style.display = 'flex';
+                    section2.style.opacity = 1;
+                    section3.style.opacity = 1;
+
 
                 }, 8000);
             }
