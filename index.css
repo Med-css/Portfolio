@@ -470,6 +470,27 @@ main h1 {
 .list-skills h1:nth-child(6) {
     animation-delay: 1.8s;
 }
+.list-skills h1:nth-child(7) {
+    animation-delay: 2.1s;
+}
+
+.list-skills h1:nth-child(8) {
+    animation-delay: 2.4s;
+}
+
+.list-skills h1:nth-child(9) {
+    animation-delay: 2.7s;
+}
+
+.list-skills h1:nth-child(10) {
+    animation-delay: 3s;
+}
+
+.list-skills h1:nth-child(11) {
+    animation-delay: 3.3s;
+}
+
+
 
 .presentation-skills {
     width: 95%;
