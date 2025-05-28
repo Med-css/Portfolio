@@ -137,7 +137,9 @@ document.addEventListener('DOMContentLoaded', function() {
         logo.style.opacity = '0';
     }, 2600);
 });
+const section1Top = section1.offsetTop;
 
+let firstscrollanimation = false;
 // Scroll Animation
 document.addEventListener('DOMContentLoaded', function() {
     let i = 0;
@@ -153,8 +155,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const moveFactor = 39;
 
     window.addEventListener('scroll', function() {
+        if(!firstscrollanimation){
         const scrollPosition = window.scrollY;
         const viewportHeight = window.innerHeight;
+        
 
         if (scrollPosition === 0) {
             background.style.zIndex = -1;
@@ -169,6 +173,10 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             background.style.opacity = '0';
             background.style.zIndex = '-100';
+                                requestAnimationFrame(() => {
+                    window.scrollTo(0, section1Top);
+
+                });
            
             about.style.opacity = '1';
         }
@@ -187,7 +195,24 @@ document.addEventListener('DOMContentLoaded', function() {
         logoMed.style.width = `${newSizeMed}px`;
         logoMed.style.height = 'auto';
         logoMed.style.paddingLeft = `${moveRightMed}px`;
+   
+    }
+         else if(firstscrollanimation){
+            background.style.opacity = '1';
+            background.style.zIndex = '';
+            about.style.opacity = '1';
+            logo.style.width = ``;
+            logo.style.height = '';
+            logo.style.paddingLeft = ``;
+            logoMed.style.width = ``;
+            logoMed.style.height = '';
+            logoMed.style.paddingLeft = ``;
+            background.style.position = 'absolute';
+
+        }
+
     });
+    
 });
 
 // Canvas Animation
@@ -328,6 +353,7 @@ w.addEntity(Flame);
 // Inclure GSAP via un CDN
 // <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 const medplan = document.querySelector('.medplan');
+const headerfixbutton = document.querySelector('.header-fix-button');
 
 // Bloquer le défilement et animer les plans
 document.addEventListener('DOMContentLoaded', function() {
@@ -348,7 +374,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         window.addEventListener('scroll', function(event) {
             const scrollPosition = window.scrollY;
-            const section1Top = section1.offsetTop;
             const section1Height = section1.offsetHeight;
 
             if (scrollPosition >= section1Top && scrollPosition < section1Top + section1Height && !animationTriggered) {
@@ -358,6 +383,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
                          requestAnimationFrame(() => {
                     window.scrollTo(0, section1Top);
+
                 });
         }, 10);
            
@@ -374,11 +400,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 gsap.to(plans[2], { y: -100, duration: 3.5, ease: "power1.out" }); // Position d'arrivée pour le troisième plan
                 gsap.to(plans[3], { y: -150, duration: 4, ease: "power1.out" }); // Position d'arrivée pour le quatrième plan
                 gsap.to(plans[4], { y: -200, duration: 5, ease: "power1.out" }); // Position d'arrivée pour le cinquième plan
-
+                    firstscrollanimation = true;
+                    headerfixbutton.style.display = 'none';
                 // Réactiver le défilement après 8 secondes
                 setTimeout(() => {
                     body.classList.remove('no-scroll');
                     scrollLocked = false;
+                    headerfixbutton.style.display = 'flex';
+
                 }, 8000);
             }
         }, { passive: false });
