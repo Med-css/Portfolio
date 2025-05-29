@@ -627,7 +627,7 @@ main h1 {
     width: 30px;
     height: 30px;
     z-index: 10000000000;
-    background-image: url(./img/bubble1.png);
+    background-image: url(./img/bubble1.webp);
     background-repeat: no-repeat;
     background-size: contain;
     animation: wave 9s ease-in-out infinite;
@@ -640,7 +640,7 @@ main h1 {
     width: 40px;
     height: 40px;
     z-index: 10000000000;
-    background-image: url(./img/bubble2.png);
+    background-image: url(./img/bubble2.webp);
     background-repeat: no-repeat;
     background-size: contain;
     animation: wave 7s ease-in-out infinite;
@@ -653,7 +653,7 @@ main h1 {
     width: 400px;
     height: 400px;
     z-index: 10000000000;
-    background-image: url(./img/bubble3.png);
+    background-image: url(./img/bubble3.webp);
     background-repeat: no-repeat;
     background-size: contain;
     animation: wave 6s ease-in-out infinite;
@@ -704,7 +704,7 @@ main h1 {
     justify-content: center;
     align-items: flex-end;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    background-image: url(./img/Profile\ picture.png);
+    background-image: url(./img/Profile\ picture.webp);
     background-size: cover;
     background-position: center;
     flex-shrink: 0;
