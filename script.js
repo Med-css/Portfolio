@@ -376,6 +376,22 @@ class World {
 
 const w = new World();
 w.addEntity(Flame);
+let section1Passed = false;
+
+  document.getElementById("btn4").addEventListener("click", async function () {
+    if (!section1Passed) {
+      // Aller à section1
+      document.getElementById("section1").scrollIntoView({ behavior: 'smooth' });
+
+      section1Passed = true; // Marquer comme visité
+
+      // Attendre 6 secondes
+      await new Promise(resolve => setTimeout(resolve, 6000));
+    }
+
+    // Aller à section3
+    document.getElementById("section3").scrollIntoView({ behavior: 'smooth' });
+  });
 
 // GSAP Animation
 const medplan = document.querySelector('.medplan');
@@ -450,6 +466,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     headerfixbutton.style.display = 'flex';
                     section2.style.opacity = 1;
                     section3.style.opacity = 1;
+                    section1Passed = true;
                 }, 6000);
             }
         }, { passive: false });
