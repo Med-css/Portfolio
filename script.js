@@ -1,3 +1,4 @@
+
 // Image Animation
 const images = [
     document.getElementById('med1'),
@@ -393,111 +394,135 @@ let section1Passed = false;
     document.getElementById("section3").scrollIntoView({ behavior: 'smooth' });
   });
 
+let lenis; // Déclarer lenis en dehors de la portée pour pouvoir le réinitialiser
+let rafId; // Stocker l'ID de l'animation pour pouvoir l'arrêter
+
+function initLenis() {
+  lenis = new Lenis({
+    duration: 1.2,
+    smooth: true,
+  });
+
+  function raf(time) {
+    if (lenis) {
+      lenis.raf(time);
+    }
+    rafId = requestAnimationFrame(raf);
+  }
+
+  rafId = requestAnimationFrame(raf);
+}
+
+function destroyLenis() {
+  if (lenis) {
+    cancelAnimationFrame(rafId); // Arrêter la boucle d'animation
+    lenis.destroy();
+    lenis = null;
+  }
+}
+
+initLenis(); // Initialiser Lenis
+
 // GSAP Animation
 const medplan = document.querySelector('.medplan');
 const headerfixbutton = document.querySelector('.header-fix-button');
 const luciole = document.querySelector('.luciole');
 
 document.addEventListener('DOMContentLoaded', function() {
-    const section1 = document.getElementById('section1');
-    const body = document.body;
-    const plans = document.querySelectorAll('.plan');
-    let scrollLocked = false;
-    let animationTriggered = false;
+  const section1 = document.getElementById('section1');
+  const body = document.body;
+  const plans = document.querySelectorAll('.plan');
+  let scrollLocked = false;
+  let animationTriggered = false;
 
-    if (section1) {
-        // Définir les positions initiales des plans avec GSAP
-        gsap.set(plans[0], { y: 0 });
-        gsap.set(plans[1], { y: 50 });
-        gsap.set(plans[2], { y: 100 });
-        gsap.set(plans[3], { y: 150 });
-        gsap.set(plans[4], { y: 200 });
+  if (section1) {
+    // Définir les positions initiales des plans avec GSAP
+    gsap.set(plans[0], { y: 0 });
+    gsap.set(plans[1], { y: 50 });
+    gsap.set(plans[2], { y: 100 });
+    gsap.set(plans[3], { y: 150 });
+    gsap.set(plans[4], { y: 200 });
 
-        window.addEventListener('scroll', function(event) {
-            const scrollPosition = window.scrollY;
-            const section1Height = section1.offsetHeight;
+    window.addEventListener('scroll', function(event) {
+      const scrollPosition = window.scrollY;
+      const section1Top = section1.offsetTop;
+      const section1Height = section1.offsetHeight;
 
-            if (scrollPosition >= section1Top && scrollPosition < section1Top + section1Height && !animationTriggered) {
-                setTimeout(() => {
-                    medplan.classList.remove('disabled');
-                }, 4500);
-                setTimeout(() => {
-                    requestAnimationFrame(() => {
-                        window.scrollTo(0, section1Top);
-                    });
-                }, 10);
-                              setTimeout(() => {
-                    requestAnimationFrame(() => {
-                        window.scrollTo(0, section1Top);
-                    });
-                }, 300);
+      if (scrollPosition >= section1Top && scrollPosition < section1Top + section1Height && !animationTriggered) {
+        animationTriggered = true;
+        scrollLocked = true;
 
-                animationTriggered = true;
-                scrollLocked = true;
-                window.scrollTo(0, section1Top);
-                event.preventDefault();
-                body.classList.add('no-scroll');
+        // Détruire Lenis pour désactiver le défilement fluide
+        destroyLenis();
 
-                // Animer les plans avec GSAP vers leurs positions finales
-                gsap.to(plans[0], { y: -250, duration: 3, ease: "power1.out" });
-                gsap.to(plans[1], { y: -250, duration: 3, ease: "power1.out" });
-                gsap.to(plans[2], { y: -100, duration: 3.5, ease: "power1.out" });
-                gsap.to(plans[3], { y: -150, duration: 4, ease: "power1.out" });
-                gsap.to(plans[4], { y: -200, duration: 5, ease: "power1.out" });
-                firstscrollanimation = true;
-                headerfixbutton.style.display = 'none';
-                setTimeout(() => {
-                    luciole.style.opacity = '1';
-                }, 4500);
-
-                // Réactiver le défilement après 8 secondes
-                setTimeout(() => {
-                    body.classList.remove('no-scroll');
-                    scrollLocked = false;
-                    headerfixbutton.style.animationDelay = '0.3s';
-                    const children = headerfixbutton.children;
-                    let delay = 0.5;
-
-                    for (let i = 0; i < children.length; i++) {
-                        children[i].style.animationDelay = `${delay}s`;
-                        children[i].classList.add('your-animation-class');
-                        delay += 0.2;
-                    }
-                    headerfixbutton.style.display = 'flex';
-                    section2.style.opacity = 1;
-                    section3.style.opacity = 1;
-                    section1Passed = true;
-                }, 6000);
-            }
-        }, { passive: false });
-
-        // Empêcher le défilement via les touches du clavier
-        window.addEventListener('keydown', function(event) {
-            if (scrollLocked && [32, 33, 34, 35, 36, 38, 40].includes(event.keyCode)) {
-                event.preventDefault();
-            }
+        // Forcer le défilement à la position souhaitée
+        window.scrollTo({
+          top: section1Top,
+          behavior: 'instant'
         });
 
-        // Empêcher le défilement via la souris et le pavé tactile
-        window.addEventListener('wheel', function(event) {
-            const scrollPosition = window.scrollY;
-            const section1Top = section1.offsetTop;
-            const section1Height = section1.offsetHeight;
+        body.classList.add('no-scroll');
 
-            if (scrollLocked && scrollPosition >= section1Top && scrollPosition < section1Top + section1Height) {
-                event.preventDefault();
-            }
-        }, { passive: false });
+        setTimeout(() => {
+          medplan.classList.remove('disabled');
+        }, 4500);
 
-        // Empêcher le défilement via les écrans tactiles
-        window.addEventListener('touchmove', function(event) {
-            const scrollPosition = window.scrollY;
-            const section1Top = section1.offsetTop;
-            const section1Height = section1.offsetHeight;
+        // Animer les plans avec GSAP vers leurs positions finales
+        gsap.to(plans[0], { y: -250, duration: 3, ease: "power1.out" });
+        gsap.to(plans[1], { y: -250, duration: 3, ease: "power1.out" });
+        gsap.to(plans[2], { y: -100, duration: 3.5, ease: "power1.out" });
+        gsap.to(plans[3], { y: -150, duration: 4, ease: "power1.out" });
+        gsap.to(plans[4], { y: -200, duration: 5, ease: "power1.out" });
+        firstscrollanimation = true;
+        headerfixbutton.style.display = 'none';
 
-            if (scrollLocked && scrollPosition >= section1Top && scrollPosition < section1Top + section1Height) {
-                event.preventDefault();
-            }
-        }, { passive: false });
-    }
+        setTimeout(() => {
+          luciole.style.opacity = '1';
+        }, 4500);
+
+        // Réactiver le défilement après 6 secondes
+        setTimeout(() => {
+          body.classList.remove('no-scroll');
+          scrollLocked = false;
+          headerfixbutton.style.animationDelay = '0.3s';
+          const children = headerfixbutton.children;
+          let delay = 0.5;
+
+          for (let i = 0; i < children.length; i++) {
+            children[i].style.animationDelay = `${delay}s`;
+            children[i].classList.add('your-animation-class');
+            delay += 0.2;
+          }
+          headerfixbutton.style.display = 'flex';
+          section2.style.opacity = 1;
+          section3.style.opacity = 1;
+          section1Passed = true;
+
+          // Réinitialiser Lenis pour permettre à nouveau le défilement fluide
+          initLenis();
+        }, 6000);
+      }
+    }, { passive: false });
+
+    // Empêcher le défilement via les touches du clavier
+    window.addEventListener('keydown', function(event) {
+      if (scrollLocked && [32, 33, 34, 35, 36, 38, 40].includes(event.keyCode)) {
+        event.preventDefault();
+      }
+    });
+
+    // Empêcher le défilement via la souris et le pavé tactile
+    window.addEventListener('wheel', function(event) {
+      if (scrollLocked) {
+        event.preventDefault();
+      }
+    }, { passive: false });
+
+    // Empêcher le défilement via les écrans tactiles
+    window.addEventListener('touchmove', function(event) {
+      if (scrollLocked) {
+        event.preventDefault();
+      }
+    }, { passive: false });
+  }
 });
