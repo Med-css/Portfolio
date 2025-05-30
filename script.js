@@ -526,3 +526,104 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { passive: false });
   }
 });
+
+
+    const canvasL = document.getElementById('luciole-canvas');
+    const ctxL = canvasL.getContext('2d');
+    let lucioles = [];
+
+    function resizeCanvasL() {
+      canvasL.width = window.innerWidth;
+      canvasL.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvasL);
+    resizeCanvasL();
+
+    class Luciole {
+      constructor() {
+        this.x = Math.random() * canvasL.width;
+        this.y = Math.random() * canvasL.height;
+        this.radius = 0.5 + Math.random() * 0.7;
+        this.baseAlpha = 0.4 + Math.random() * 0.4;
+        this.alpha = this.baseAlpha;
+        this.alphaDelta = (Math.random() * 0.015) + 0.003;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.angle = Math.random() * 2 * Math.PI;
+        this.angleSpeed = 0.01 + Math.random() * 0.02;
+        this.oscillationRadius = 10 + Math.random() * 10;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        this.angle += this.angleSpeed;
+        this.x += Math.cos(this.angle) * 0.3;
+        this.y += Math.sin(this.angle) * 0.3;
+
+        if (this.x < 0) this.x = canvasL.width;
+        if (this.x > canvasL.width) this.x = 0;
+        if (this.y < 0) this.y = canvasL.height;
+        if (this.y > canvasL.height) this.y = 0;
+
+        this.alpha += this.alphaDelta;
+        if (this.alpha <= this.baseAlpha * 0.5 || this.alpha >= this.baseAlpha) this.alphaDelta *= -1;
+      }
+
+      draw() {
+        let gradient = ctxL.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 6);
+        gradient.addColorStop(0, `rgba(255, 255, 180, ${this.alpha})`);
+        gradient.addColorStop(1, 'rgba(255, 255, 180, 0)');
+        ctxL.fillStyle = gradient;
+        ctxL.beginPath();
+        ctxL.arc(this.x, this.y, this.radius * 6, 0, 2 * Math.PI);
+        ctxL.fill();
+
+        ctxL.beginPath();
+        ctxL.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        ctxL.fillStyle = `rgba(255, 255, 150, ${this.alpha})`;
+        ctxL.fill();
+      }
+    }
+
+    lucioles = [];
+    for (let i = 0; i < 60; i++) {
+      lucioles.push(new Luciole());
+    }
+
+    function animateLucioles() {
+      ctxL.clearRect(0, 0, canvasL.width, canvasL.height);
+      for (let luciole of lucioles) {
+        luciole.update();
+        luciole.draw();
+      }
+      requestAnimationFrame(animateLucioles);
+    }
+
+    animateLucioles();
+
+    document.querySelectorAll('.cardproject').forEach(card => {
+        const hoverCard = card.querySelector('.hovercard');
+
+        card.addEventListener('mouseenter', () => {
+            hoverCard.classList.add('active');
+        });
+
+        card.addEventListener('mouseleave', () => {
+            hoverCard.classList.remove('active');
+        });
+    });
+    document.querySelectorAll('.cardproject-2').forEach(card => {
+        const hoverCard = card.querySelector('.hovercard');
+
+        card.addEventListener('mouseenter', () => {
+            hoverCard.classList.add('active');
+        });
+
+        card.addEventListener('mouseleave', () => {
+            hoverCard.classList.remove('active');
+        });
+    });
+ 
