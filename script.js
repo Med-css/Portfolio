@@ -1,3 +1,6 @@
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
 
 // Image Animation
 const images = [
