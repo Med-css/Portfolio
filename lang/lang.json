@@ -72,7 +72,7 @@
           "in-progress": "(In Progress)",
           "description": "A dynamic pinball game inspired by the Vosges landscapes, currently under development in Unity."
         },
-        "in-progress": "Project in Progress<br>Image Coming Soon",
+        "in-progress": "Project in Progress",
         "in-development": "In Development"
       }
     },
@@ -154,7 +154,7 @@
           "in-progress": "(En Cours)",
           "description": "Un jeu de flipper dynamique inspiré des paysages des Vosges, actuellement en développement sous Unity."
         },
-        "in-progress": "Projet en Cours<br>Image Bientôt Disponible",
+        "in-progress": "Projet en Cours",
         "in-development": "En Développement"
       }
     },

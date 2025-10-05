@@ -17,7 +17,11 @@ img {
 html {
     scroll-behavior: smooth;
 }
-
+.hero-section{
+    position: absolute;
+    bottom: 15%;
+    right: 0;
+}
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #FAF9ED;
@@ -644,6 +648,8 @@ main {
 .content {
     max-width: 500px;
     padding-top: 40px;
+    z-index: 5;
+    position: relative;
 }
 
 .greeting {
@@ -683,6 +689,7 @@ h1 {
     animation: slideIn 1s forwards;
     animation-delay: 1.1s;
     text-decoration: none;
+    
 }
 
 .cta:hover {
@@ -940,13 +947,8 @@ body {
         width: 95%;
         padding: 50px;
     }
-    .hero-image {
-        right: 50px;
-        top: 78%;
-    }
-    .hero-image img {
-        max-height: 650px;
-    }
+
+
     h1 {
         font-size: 56px;
     }
@@ -959,13 +961,11 @@ body {
     .container {
         padding: 40px;
     }
-    .hero-image {
-        right: 40px;
-        top: 80%;
+    .hero-image img{
+        max-height: 500px;
     }
-    .hero-image img {
-        max-height: 600px;
-    }
+
+
     .logo {
         font-size: 28px;
     }
@@ -1002,16 +1002,11 @@ body {
 
 @media (max-width: 1022px) {
     .container {
-        height: auto;
         min-height: 85vh;
         padding: 35px;
     }
-    .hero-image {
-        right: -30px;
-    }
-    .hero-image img {
-        max-height: 500px;
-    }
+   
+ 
     h1 {
         font-size: 42px;
     }
@@ -1090,11 +1085,21 @@ body {
         margin-bottom: 60px;
     }
 }
-
+@media (max-width: 931px) {
+    .hero-section{
+        bottom: 10%;
+        right: -20%;
+    }
+}
 @media (max-width: 798px) {
+    .hero-section{
+        bottom: -40%;
+        right: -20%;
+        width: 100%;
+        height: 100%;
+    }
     .container {
         padding: 30px 25px;
-        height: auto;
         min-height: 90vh;
     }
     header {
@@ -1126,21 +1131,6 @@ body {
         font-size: 17px;
         margin: 0 auto 28px;
         max-width: 100%;
-    }
-    .hero-image {
-        position: relative;
-        right: -40px;
-        transform: none;
-        margin-top: 0;
-        bottom: -40px;
-    }
-    .hero-image img {
-        max-height: 350px;
-        margin: 0 auto;
-        transform: none;
-        width: auto;
-        margin: 0 auto;
-        right: -50px;
     }
     .section-main {
         padding: 60px 0;
@@ -1189,6 +1179,9 @@ body {
 }
 
 @media (max-width: 768px) {
+    .hero-section{
+        right: -30%;
+    }
     .section-title {
         font-size: 36px;
     }
@@ -1231,9 +1224,19 @@ body {
     :root {
         --square-size: 14vmin
     }
+    .hero-section{
+        bottom: -50%;
+        right: -45%;
+    }
 }
 
 @media (max-width: 480px) {
+    .hero-section{
+        right: -55%;
+    }
+    .bodyshape1 {
+        display: none;
+    }
     .container {
         padding: 25px 20px;
     }
@@ -1244,7 +1247,7 @@ body {
         gap: 24px;
     }
     nav a {
-        font-size: 15px;
+        font-size: 12px;
     }
     h1 {
         font-size: 32px;
@@ -1259,9 +1262,6 @@ body {
         padding: 12px 28px;
         font-size: 15px;
     }
-    .hero-image img {
-        max-height: 300px;
-    }
     .section-main h2 {
         font-size: 30px;
     }
@@ -1273,10 +1273,42 @@ body {
         font-size: 20px;
     }
 }
-
+@media (max-width: 420px) {
+    .hero-section{
+        right: -70%;
+    }
+    .scroll-indicator svg {
+        color: white;
+    }
+}
+@media (max-width: 360px) {
+    .hero-section{
+        right: -75%;
+    }
+}
 @media (prefers-reduced-motion: reduce) {
     .square,
     .square.flip {
         transition: none;
+    }
+}
+@media (min-width: 900px) and (max-height: 820px) {
+    .content{
+        padding-top: 0px;
+    }
+    h1 {
+        font-size: 44px;
+    }
+    .greeting {
+        font-size: 22px;
+    }
+    .description {
+        font-size: 20px;
+    }
+    .logo{
+        font-size: 28px;
+    }
+    nav a {
+        font-size: 14px;
     }
 }
