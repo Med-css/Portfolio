@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Sitemap: https://med-css.github.io/Portfolio/sitemap.xml
+
+# Bloquer les fichiers inutiles
+Disallow: /assets/shapes/
+Disallow: /*.json$

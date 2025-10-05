@@ -1,0 +1,166 @@
+{
+  "en": {
+    "greeting": "Hello, I'm",
+    "description": "I create websites, applications, APIs, extensions, and more.",
+    "cta": "Discover My Work",
+    "section-title": "My Skills and Key Projects",
+    "header": {
+      "home": "Home",
+      "work": "Work",
+      "contact": "Contact"
+    },
+    "footer": {
+      "home": "Home",
+      "work": "Work",
+      "contact": "Contact",
+      "cta": "Ready for the next big project?",
+      "cta-button": "Start a Conversation",
+      "navigation": "Navigation",
+      "connect": "Connect",
+      "copyright": "© 2025 Med.css Portfolio. All rights reserved."
+    },
+    "discover": "Discover",
+    "website-creation": {
+      "title": "Website Creation",
+      "description": "From visual design to databases, I master the entire web development process, ensuring robust and high-performance solutions.",
+      "cta": "See my Web Projects",
+      "tech": {
+        "frontend": {
+          "title": "Frontend / Animation",
+          "description": "  HTML, CSS (Sass), JavaScript (ES6+), GSAP for smooth animations."
+        },
+        "backend": {
+          "title": "Backend / Databases",
+          "description": "Schema design and management (MySQL/PostgreSQL), optimized queries (SQL)."
+        },
+        "docker": {
+          "title": "Environment & Docker",
+          "description": "Deployment and containerization with Docker for reliable development and production environments."
+        },
+        "apis": {
+          "title": "APIs & JavaScript Libraries",
+          "description": "Integration and development of REST APIs, use of libraries like GSAP, jsPDF, Crypto, and more."
+        }
+      }
+    },
+    "wordpress": {
+      "title": "Custom WordPress Plugin Development",
+      "description": "I extend WordPress features to meet specific business needs, delivering integrated and turnkey solutions.",
+      "cta": "Discover the Plugins",
+      "plugins": {
+        "pdf-editor": {
+          "title": "PDF Editor Plugin",
+          "description": "Development of a WordPress plugin for managing and generating online exam copies in PDF format, with integration of a shopping cart system to simplify purchase and distribution of documents. The plugin is designed to be secure, efficient, and user-friendly."
+        },
+        "quote-generator": {
+          "title": "Quote Generation Plugin",
+          "description": "Development of a WordPress plugin that automatically generates a quote based on the user’s cart. The quote is exported as a PDF and sent by email to the client with a unique login token to finalize their order securely."
+        }
+      }
+    },
+    "unity": {
+      "title": "3D Projects & Development with Unity",
+      "description": "From interactive digital art to playful applications, I use Unity and web 3D technologies to bring immersive experiences to life.",
+      "cta": "Explore 3D Projects",
+      "projects": {
+        "scream": {
+          "title": "3D Recreation of Munch’s “The Scream” with WebGL",
+          "description": "An interactive interpretation of the famous painting, using WebGL for an immersive experience."
+        },
+        "pinball": {
+          "title": "3D Pinball on the Vosges Theme",
+          "in-progress": "(In Progress)",
+          "description": "A dynamic pinball game inspired by the Vosges landscapes, currently under development in Unity."
+        },
+        "in-progress": "Project in Progress<br>Image Coming Soon",
+        "in-development": "In Development"
+      }
+    },
+    "lang": {
+      "en": "English",
+      "fr": "Français"
+    }
+  },
+  "fr": {
+    "greeting": "Bonjour, je suis",
+    "description": "Je crée des sites web, des applications, des API, des extensions et plus.",
+    "cta": "Découvrir Mon Travail",
+    "section-title": "Mes Compétences et Projets Clés",
+    "header": {
+      "home": "Accueil",
+      "work": "Compétences",
+      "contact": "Contact"
+    },
+    "footer": {
+      "home": "Accueil",
+      "work": "Compétences",
+      "contact": "Contact",
+      "cta": "Prêt pour le prochain grand projet ?",
+      "cta-button": "Envoyer un message",
+      "navigation": "Navigation",
+      "connect": "Me Suivre",
+      "copyright": "© 2025 Med.css Portfolio. Tous droits réservés."
+    },
+    "discover": "Découvrir",
+    "website-creation": {
+      "title": "Création de Sites Web",
+      "description": "Du design visuel aux bases de données, je maîtrise l'ensemble du processus de développement web, garantissant des solutions robustes et performantes.",
+      "cta": "Voir mes Projets Web",
+      "tech": {
+        "frontend": {
+          "title": "Frontend / Animation",
+          "description": "HTML, CSS (Sass), JavaScript (ES6+) et GSAP pour des animations fluides."
+        },
+        "backend": {
+          "title": "Backend / Bases de Données",
+          "description": "Conception et gestion de schémas (MySQL/PostgreSQL), requêtes optimisées (SQL)."
+        },
+        "docker": {
+          "title": "Environnement & Docker",
+          "description": "Déploiement et conteneurisation avec Docker pour des environnements de développement et de production fiables."
+        },
+        "apis": {
+          "title": "APIs & Bibliothèques JavaScript",
+          "description": "Intégration et développement d'APIs REST, utilisation de bibliothèques comme GSAP, jsPDF, Crypto, et plus."
+        }
+      }
+    },
+    "wordpress": {
+      "title": "Développement de Plugins WordPress Sur Mesure",
+      "description": "J'étend les fonctionnalités de WordPress pour répondre à des besoins métiers spécifiques, en proposant des solutions intégrées et clés en main.",
+      "cta": "Découvrir les Plugins",
+      "plugins": {
+        "pdf-editor": {
+          "title": "Plugin Éditeur de PDF",
+          "description": "Développement d'un plugin WordPress pour gérer et générer des copies d'examen en ligne au format PDF, avec intégration d'un système de panier pour simplifier l'achat et la distribution des documents. Le plugin est conçu pour être sécurisé, efficace et convivial."
+        },
+        "quote-generator": {
+          "title": "Plugin de Génération de Devis",
+          "description": "Développement d'un plugin WordPress qui génère automatiquement un devis basé sur le panier de l'utilisateur. Le devis est exporté en PDF et envoyé par email au client avec un jeton de connexion unique pour finaliser sa commande en toute sécurité."
+        }
+      }
+    },
+    "unity": {
+      "title": "Projets 3D & Développement avec Unity",
+      "description": "De l'art numérique interactif aux applications ludiques, j'utilise Unity et les technologies 3D web pour donner vie à des expériences immersives.",
+      "cta": "Explorer les Projets 3D",
+      "projects": {
+        "scream": {
+          "title": "Recréation 3D du \"Cri\" de Munch avec WebGL",
+          "description": "Une interprétation interactive du célèbre tableau, utilisant WebGL pour une expérience immersive."
+        },
+        "pinball": {
+          "title": "Flipper 3D sur le Thème des Vosges",
+          "in-progress": "(En Cours)",
+          "description": "Un jeu de flipper dynamique inspiré des paysages des Vosges, actuellement en développement sous Unity."
+        },
+        "in-progress": "Projet en Cours<br>Image Bientôt Disponible",
+        "in-development": "En Développement"
+      }
+    },
+    "lang": {
+      "en": "Anglais",
+      "fr": "Français"
+    }
+  }
+}
