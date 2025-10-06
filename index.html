@@ -2,7 +2,11 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#1A4C4C">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <!-- Title optimisé -->
     <title>Mehdi Erraes - Développeur Web Full Stack | Saint-Dié-des-Vosges | IUT des Vosges</title>
     <!-- Meta Description -->
@@ -33,12 +37,18 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" sizes="any" href="./assets/favicon/logo.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/logo.svg">
-    <!-- Preconnect pour optimiser le chargement -->
+    <!-- Preconnect et Preload pour optimiser le chargement -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="./assets/med.png" as="image">
+    <link rel="preload" href="./styles.css" as="style">
+    <link rel="preload" href="./script.js" as="script">
+    <link rel="preload" href="./lang/lang.json" as="fetch" crossorigin="anonymous">
+    <!-- PWA Support -->
+    <link rel="manifest" href="manifest.json">
     <!-- Theme Color -->
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#1A4C4C">
     <!-- Langues alternatives -->
     <link rel="alternate" hreflang="fr" href="https://med-css.github.io/Portfolio/">
     <link rel="alternate" hreflang="x-default" href="https://med-css.github.io/Portfolio/">
